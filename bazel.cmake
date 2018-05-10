@@ -11,62 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+
+########################################################################
 #
-# Gang Liao, liao.gang@kaust.edu.sa
+# Gang Liao (gangliao@umd.edu)
 #
-# generic.cmake defines CMakes functions that look like Bazel's
-# building rules (https://bazel.build/).
+# bazel.cmake mimics the behavior of bazel (https://bazel.build/) to 
+# simplify the usability of CMake.
 #
+# The [README.md] contains more information about how to use it.
 #
-# -------------------------------------------
-#     C++        CUDA C++
-# -------------------------------------------
-# cc_library    nv_library
-# cc_testing    nv_testing
-# -------------------------------------------
-#
-# To build a static library example.a from example.cc using the system
-#  compiler (like GCC):
-#
-#   cc_library(example SRCS example.cc)
-#
-# To build a static library example.a from multiple source files
-# example{1,2,3}.cc:
-#
-#   cc_library(example SRCS example1.cc example2.cc example3.cc)
-#
-# To build a shared library example.so from example.cc:
-#
-#   cc_library(example SHARED SRCS example.cc)
-#
-# To build a library using Nvidia's NVCC from .cu file(s), use the nv_
-# prefixed version:
-#
-#   nv_library(example SRCS example.cu)
-#
-# To specify that a library new_example.a depends on other libraies:
-#
-#   cc_library(new_example SRCS new_example.cc DEPS example)
-#
-# Static libraries can be composed of other static libraries:
-#
-#   cc_library(composed DEPS dependent1 dependent2 dependent3)
-#
-# To build a unit test binary, which is an executable binary with
-# GoogleTest linked:
-#
-#   cc_testing(example_test SRCS example_test.cc DEPS example)
-#
-# To build a unit test binary using NVCC, use the nv_ prefixed version:
-#
-#   nv_testing(example_test SRCS example_test.cu DEPS example)
-#
-# It is pretty often that executable and test binaries depend on
-# pre-defined external libaries like glog and gflags defined in
-# /cmake/external/*.cmake:
-#
-#   cc_testing(example_test SRCS example_test.cc DEPS example glog gflags)
-#
+########################################################################
 
 # including binary directory for generated headers.
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
