@@ -44,29 +44,29 @@ function(merge_static_libs TARGET_NAME)
   list(REMOVE_DUPLICATES libs_deps)
 
   if(APPLE) # Use OSX's libtool to merge archives
-    # To produce a library we need at least one source file.
-    # It is created by add_custom_command below and will helps
-    # also help to track dependencies.
+    # To produce a library we need at least one source file,
+    # which is created by add_custom_command below. It
+    # also can help to track dependencies.
     set(dummyfile ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}_dummy.c)
 
-    # Make the generated dummy source file depended on all static input
-    # libs. If input lib changes,the source file is touched
+    # Make the generated dummy source file dependeds on all static input
+    # libraries. If they are changed, the dummy file is also touched
     # which causes the desired effect (relink).
     add_custom_command(OUTPUT ${dummyfile}
       COMMAND ${CMAKE_COMMAND} -E touch ${dummyfile}
       DEPENDS ${libs})
 
-    # Generate dummy staic lib
+    # Generate dummy staic library
     file(WRITE ${dummyfile} "const char * dummy = \"${dummyfile}\";")
     add_library(${TARGET_NAME} STATIC ${dummyfile})
     target_link_libraries(${TARGET_NAME} ${libs_deps})
 
     foreach(lib ${libs})
-      # Get the file names of the libraries to be merged
+      # Get the filenames of the merged libraries 
       set(libfiles ${libfiles} $<TARGET_FILE:${lib}>)
     endforeach()
     add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
-      COMMAND rm "${CMAKE_CURRENT_BINARY_DIR}/lib${TARGET_NAME}.a"
+      COMMAND rm -rf "${CMAKE_CURRENT_BINARY_DIR}/lib${TARGET_NAME}.a"
       COMMAND /usr/bin/libtool -static -o "${CMAKE_CURRENT_BINARY_DIR}/lib${TARGET_NAME}.a" ${libfiles})
   else() # general UNIX: use "ar" to extract objects and re-add to a common lib
     foreach(lib ${libs})
