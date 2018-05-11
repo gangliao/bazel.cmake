@@ -1,7 +1,7 @@
 # bazel.cmake
 
 <div align="center">
-https://raw.githubusercontent.com/CMakeHub/bazaar/master/logo.png><br><br>
+    <img src="https://raw.githubusercontent.com/CMakeHub/bazaar/master/logo.png"><br><br>
 </div>
 
 
