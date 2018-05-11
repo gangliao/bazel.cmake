@@ -113,7 +113,7 @@ endfunction(merge_static_libs)
 
 function(cmake_library TARGET_NAME)
   set(options STATIC SHARED)
-  set(oneValueArgs TYPE)
+  set(oneValueArgs "")
   set(multiValueArgs SRCS DEPS EXTRA_DEPS)
   cmake_parse_arguments(cmake_library "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
   if (cmake_library_SRCS)
