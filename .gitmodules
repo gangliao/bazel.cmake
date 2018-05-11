@@ -7,3 +7,9 @@
 [submodule "third-party/glog"]
 	path = third-party/glog
 	url = https://github.com/google/glog
+[submodule "third-party/ios-cmake"]
+	path = third-party/ios-cmake
+	url = https://github.com/gangliao/ios-cmake
+[submodule "third-party/android-cmake"]
+	path = third-party/android-cmake
+	url = https://github.com/gangliao/android-cmake
