@@ -155,7 +155,7 @@ function(nv_library)
   cmake_library(${ARGV} "FUNC cuda_add_library")
 endfunction(nv_library)
 
-function(nv_binary
+function(nv_binary)
   cmake_library(${ARGV} "FUNC cuda_add_executable")
 endfunction(nv_binary)
 
