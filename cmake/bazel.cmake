@@ -26,7 +26,13 @@ if(NOT CMAKE_CROSSCOMPILING)
     find_package(CUDA QUIET)
 endif(NOT CMAKE_CROSSCOMPILING)
 
-option(WITH_GPU "Compile Source Code with NVIDIA GPU" ${CUDA_FOUND})
+option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     ${CUDA_FOUND})
+option(WITH_TESTING "Compile Source Code with Unit Testing"   OFF)
+
+include(external/cuda)
+include(external/gflags)
+include(external/glog)
+include(external/gtest)
 
 # including binary directory for generated headers.
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
