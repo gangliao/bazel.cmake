@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Gang Liao. All Rights Reserve.
+# Copyright (c) 2016 Gang Liao <gangliao@umd.edu> All Rights Reserve.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +14,6 @@
 
 
 ########################################################################
-#
-# Gang Liao (gangliao@umd.edu)
 #
 # bazel.cmake mimics the behavior of bazel (https://bazel.build/) to 
 # simplify the usability of CMake.
