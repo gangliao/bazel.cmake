@@ -92,7 +92,9 @@ function(cmake_library TARGET_NAME)
       target_link_libraries(${TARGET_NAME} ${cmake_library_DEPS} ${cmake_library_EXTRA_DEPS})
     endif(cmake_library_DEPS)
     if (cmake_library_EXTRA_DEPS)
-      add_test(${TARGET_NAME} $<TARGET_FILE:${TARGET_NAME}>)
+      add_test(NAME ${TARGET_NAME}
+               WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+               COMMAND ${TARGET_NAME})
     endif(cmake_library_EXTRA_DEPS)
   else(cmake_library_SRCS)
     if (cmake_library_DEPS AND NOT ${cmake_library_FUNC} MATCHES "^add_executable$")
