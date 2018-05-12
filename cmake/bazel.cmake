@@ -27,7 +27,7 @@ if(NOT CMAKE_CROSSCOMPILING)
 endif(NOT CMAKE_CROSSCOMPILING)
 
 option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     ${CUDA_FOUND})
-option(WITH_TESTING "Compile Source Code with Unit Testing"   OFF)
+option(WITH_TESTING "Compile Source Code with Unit Testing"   ON)
 
 get_filename_component(BAZEL_THIRD_PARTY_DIR ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 set(BAZEL_THIRD_PARTY_DIR ${BAZEL_THIRD_PARTY_DIR}/third-party)
