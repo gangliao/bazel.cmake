@@ -53,5 +53,6 @@ SET_PROPERTY(TARGET gflags PROPERTY IMPORTED_LOCATION ${GFLAGS_LIBRARIES})
 ADD_DEPENDENCIES(gflags extern_gflags)
 
 IF(WIN32)
+    # https://groups.google.com/forum/#!topic/google-gflags/cM4DuGOS_GI
     LINK_LIBRARIES("shlwapi.lib")
 ENDIF(WIN32)
