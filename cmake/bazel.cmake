@@ -32,6 +32,23 @@ option(WITH_TESTING "Compile Source Code with Unit Testing"   ON)
 get_filename_component(BAZEL_THIRD_PARTY_DIR ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 set(BAZEL_THIRD_PARTY_DIR ${BAZEL_THIRD_PARTY_DIR}/third-party)
 
+# external dependencies build args for mobile
+IF(CMAKE_TOOLCHAIN_FILE AND IOS_PLATFORM)
+        SET(EXTERNAL_PROJECT_CMAKE_ARGS
+            CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
+            CMAKE_ARGS -DIOS_PLATFORM=${IOS_PLATFORM}
+        )
+        add_definitions(-D__arm__)
+ELSE()
+    SET(EXTERNAL_PROJECT_CMAKE_ARGS "")
+ENDIF()
+
+if(NOT APPLE AND NOT ANDROID)
+    find_package(Threads REQUIRED)
+    link_libraries(${CMAKE_THREAD_LIBS_INIT})
+    set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl -lrt")
+endif(NOT APPLE AND NOT ANDROID)
+
 include(merge_libs)
 include(external/cuda)
 include(external/gflags)
@@ -39,13 +56,7 @@ include(external/glog)
 include(external/gtest)
 
 # including binary directory for generated headers.
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-
-if(NOT APPLE AND NOT ANDROID)
-    find_package(Threads REQUIRED)
-    link_libraries(${CMAKE_THREAD_LIBS_INIT})
-    set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl -lrt")
-endif(NOT APPLE AND NOT ANDROID)
+# include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 macro(_build_target func_tag)
   set(_sources ${ARGN})
