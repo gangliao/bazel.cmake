@@ -49,6 +49,7 @@ if(NOT APPLE AND NOT ANDROID)
     set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl -lrt")
 endif(NOT APPLE AND NOT ANDROID)
 
+include(compile)
 include(merge_libs)
 include(external/cuda)
 include(external/gflags)
