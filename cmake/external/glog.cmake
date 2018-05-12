@@ -14,7 +14,7 @@
 
 INCLUDE(ExternalProject)
 
-SET(GLOG_SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party/glog)
+SET(GLOG_SOURCES_DIR ${BAZEL_CMAKE_DIR}/third_party/glog)
 SET(GLOG_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/third_party/glog)
 SET(GLOG_INCLUDE_DIR "${GLOG_INSTALL_DIR}/include" CACHE PATH "glog include directory." FORCE)
 
