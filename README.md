@@ -71,6 +71,15 @@ Scanning dependencies of target hello
 [100%] Built target hello
 ```
 
+## Cheat Sheet
+
+| APIs                                                             | Description | Code Snippets | Linux | Windows | Android | Mac OS X | Apple IOS |
+|------------------------------------------------------------------|-------------|---------------|-------|---------|---------|----------|-----------|
+| cc_library(lib_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             | links         |  yes  |   yes   |   yes   |    yes   |    yes    |
+| cc_library(lib_name DEPS lib1 lib2 ...)                          |             |               |       |         |         |          |           |
+| cc_testing(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             |               |  yes  |   yes   |   yes   |    yes   |    yes    |
+| cc_binary(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...)  |             |               |       |         |         |          |           |
+
 
 ## Advanced Options
 
