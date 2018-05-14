@@ -72,6 +72,14 @@ Scanning dependencies of target hello
 ```
 
 
+## Advanced Options
+
+### Build on Windows 
+
+### Build on Android
+
+### Build on Apple IOS
+
 ## License
 
 [Apache License 2.0](LICENSE)
