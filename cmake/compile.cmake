@@ -81,11 +81,12 @@ function(detect_installed_gpus out_variable)
         "  return 0;\n"
         "}\n")
 
-        try_run(__nvcc_res __compile_result ${PROJECT_BINARY_DIR} ${__cufile}
-        COMPILE_OUTPUT_VARIABLE __compile_out
-        RUN_OUTPUT_VARIABLE __nvcc_out)
+        execute_process(COMMAND "${CUDA_NVCC_EXECUTABLE}" "--run" "${__cufile}"
+                        WORKING_DIRECTORY "${PROJECT_BINARY_DIR}/CMakeFiles/"
+                        RESULT_VARIABLE __nvcc_res OUTPUT_VARIABLE __nvcc_out
+                        ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-        if(__nvcc_res EQUAL 0 AND __compile_result)
+        if(__nvcc_res EQUAL 0)
             # nvcc outputs text containing line breaks when building with MSVC.
             # The line below prevents CMake from inserting a variable with line
             # breaks in the cache
@@ -93,7 +94,7 @@ function(detect_installed_gpus out_variable)
             string(REPLACE "2.1" "2.1(2.0)" __nvcc_out "${__nvcc_out}")
             set(CUDA_gpu_detect_output ${__nvcc_out})
         else()
-            message(WARNING "Running GPU detection script with nvcc failed: ${__nvcc_out} ${__compile_out}")
+            message(WARNING "Running GPU detection script with nvcc failed: ${__nvcc_out}")
         endif()
     endif()
 
