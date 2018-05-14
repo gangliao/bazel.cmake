@@ -12,6 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# external dependencies build args for mobile
+IF(CMAKE_TOOLCHAIN_FILE AND IOS_PLATFORM)
+        SET(EXTERNAL_PROJECT_CMAKE_ARGS
+            CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
+            CMAKE_ARGS -DIOS_PLATFORM=${IOS_PLATFORM}
+        )
+        add_definitions(-D__arm__)
+ELSE()
+    SET(EXTERNAL_PROJECT_CMAKE_ARGS "")
+ENDIF()
+
+if(NOT APPLE AND NOT ANDROID)
+    find_package(Threads REQUIRED)
+    link_libraries(${CMAKE_THREAD_LIBS_INIT})
+    set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl -lrt")
+endif(NOT APPLE AND NOT ANDROID)
+
 if(MSVC)
     add_definitions(-DWIN32_LEAN_AND_MEAN)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
@@ -38,3 +55,5 @@ else(MSVC)
     CHECK_CXX_COMPILER_FLAG("-std=c++11"    SUPPORT_CXX11)
     set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -fPIC")
 endif(MSVC)
+
+list(APPEND CUDA_NVCC_FLAGS -Wno-deprecated-gpu-targets -std=c++11)
