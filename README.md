@@ -76,9 +76,41 @@ Scanning dependencies of target hello
 
 ### Build on Windows 
 
+```bash
+mkdir build && cd build
+cmake .. -G "Visual Studio 14 2015" -DCMAKE_GENERATOR_PLATFORM=x64 -Wno-dev
+msbuild testcase.sln /p:BuildInParallel=true /m:4
+```
+
 ### Build on Android
 
+```bash
+# Download and decompress Android ndk 
+wget -c https://dl.google.com/android/repository/android-ndk-r14b-darwin-x86_64.zip && unzip -q android-ndk-r14b-darwin-x86_64.zip
+ANDROID_STANDALONE_TOOLCHAIN=`pwd`/android-toolchain-gcc
+android-ndk-r14b/build/tools/make-standalone-toolchain.sh --force --arch=arm --platform=android-21 --install-dir=$ANDROID_STANDALONE_TOOLCHAIN
+
+# Create the build directory for CMake.
+mkdir build && cd build
+PROJECT_DIR=...
+cmake -DCMAKE_TOOLCHAIN_FILE=$PROJECT_DIR/bazel.cmake/third-party/android-cmake/android.toolchain.cmake \
+      -DANDROID_STANDALONE_TOOLCHAIN=$ANDROID_STANDALONE_TOOLCHAIN \
+      -DANDROID_ABI="armeabi-v7a with NEON FP16" \
+      -DANDROID_NATIVE_API_LEVEL=21 \
+      ..
+make "-j$(sysctl -n hw.ncpu)"
+```
+
 ### Build on Apple IOS
+
+```bash
+mkdir build && cd build
+PROJECT_DIR=...
+cmake -DCMAKE_TOOLCHAIN_FILE=$PROJECT_DIR/bazel.cmake/third-party/ios-cmake/toolchain/iOS.cmake \
+      -DIOS_PLATFORM=OS \
+      ..
+make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
+```
 
 ## License
 
