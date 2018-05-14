@@ -79,7 +79,10 @@ Scanning dependencies of target hello
 | cc_library(lib_name DEPS lib1 lib2 ...)                          |             |               |       |         |         |          |           |
 | cc_testing(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             |               |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_binary(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...)  |             |               |       |         |         |          |           |
-
+| nv_library(lib_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             |               |       |         |         |          |           |
+| nv_library(lib_name DEPS lib1 lib2 ...)                          |             |               |       |         |         |          |           |
+| nv_testing(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             |               |       |         |         |          |           |
+| nv_binary(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...)  |             |               |       |         |         |          |           |
 
 ## Advanced Options
 
