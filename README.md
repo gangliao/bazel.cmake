@@ -16,6 +16,20 @@
 
 When launching a large open source project, We found that not everyone can adapt to the tremendous higher-level mechanisms CMake offered. We borrow the abstracts from [Bazel](https://bazel.build/) to make it easy for us to do so! Back to 2017, Bazel has not yet matured to support the manycore accelerators and even the most popular operating system - Windows. Maybe it's better now, but CMake is still the most powerful building tool for C++. So we will continue to support this project.
 
+## How to use it ?
+
+If you create new project, first add git submodule `bazel.cmake` in your project.
+
+```bash
+project_dir$ git submodule add --force https://github.com/CMakeHub/bazel.cmake
+project_dir$ git submodule update --init --recursive
+```
+
+Then, just like our demo project [demo.bazel.cmake](https://github.com/CMakeHub/demo.bazel.cmake), you need to integrate `bazel.cmake` module into 
+current project's CMakeLists.txt as follows:
+
+https://github.com/CMakeHub/demo.bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26
+
 ## License
 
 [Apache License 2.0](LICENSE)
