@@ -73,6 +73,7 @@ Scanning dependencies of target hello
 
 ## Cheat Sheet
 
+```bash
 | APIs                                              | Description | Code Snippets | Linux | Windows | Android | Mac OS X | Apple IOS |
 |---------------------------------------------------|-------------|---------------|-------|---------|---------|----------|-----------|
 | cc_library(lib_name SRCS src1.cc... DEPS lib1...) |             | links         |  yes  |   yes   |   yes   |    yes   |    yes    |
@@ -83,6 +84,7 @@ Scanning dependencies of target hello
 | nv_library(lib_name DEPS lib1...)                 |             |               |       |         |         |          |           |
 | nv_testing(bin_name SRCS src1.cc... DEPS lib1...) |             |               |       |         |         |          |           |
 | nv_binary(bin_name SRCS src1.cc... DEPS lib1...)  |             |               |       |         |         |          |           |
+```
 
 ## Advanced Options
 
