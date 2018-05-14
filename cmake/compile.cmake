@@ -56,4 +56,5 @@ else(MSVC)
     set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -fPIC")
 endif(MSVC)
 
-list(APPEND CUDA_NVCC_FLAGS -Wno-deprecated-gpu-targets -std=c++11)
+detect_installed_gpus(CUDA_NVCC_ARCH_FLAGS)
+list(APPEND CUDA_NVCC_FLAGS ${CUDA_NVCC_ARCH_FLAGS} -Wno-deprecated-gpu-targets -std=c++11)
