@@ -78,7 +78,7 @@ Scanning dependencies of target hello
 | APIs                                              | Description | Code Snippets | Linux | Windows | Android | Mac OS X | Apple IOS |
 |---------------------------------------------------|-------------|---------------|-------|---------|---------|----------|-----------|
 | cc_library(lib_name SRCS src1.cc... DEPS lib1...) |             | links         |  yes  |   yes   |   yes   |    yes   |    yes    |
-| cc_library(lib_name DEPS lib1...)                 |             |               |       |         |         |          |           |
+| cc_library(lib_name DEPS lib1...)                 |             |               |  yes  |         |   yes   |    yes   |    yes    |
 | cc_testing(bin_name SRCS src1.cc... DEPS lib1...) |             |               |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_binary(bin_name SRCS src1.cc... DEPS lib1...)  |             |               |  yes  |   yes   |   yes   |    yes   |    yes    |
 | nv_library(lib_name SRCS src1.cc... DEPS lib1...) |             |               |  yes  |         |    no   |    yes   |     no    |
