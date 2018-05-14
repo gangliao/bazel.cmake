@@ -29,6 +29,7 @@ Just like our demo project [demo.bazel.cmake](https://github.com/CMakeHub/demo.b
 current [project's CMakeLists.txt](https://github.com/CMakeHub/demo.bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
 
 ```cmake
+# CMakeLists.txt
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/bazel.cmake/cmake)
 include(bazel)
 ```
@@ -57,9 +58,9 @@ cc_binary(hello SRCS hello.cc)
 Then, issue the below commands to build an executable for **Mac OS or Linux**.
 
 ```bash
-mkdir build && cd build
-cmake ..
-make hello
+project_dir$ mkdir build && cd build
+project_dir$ cmake ..
+project_dir$ make hello
 ```
 
 ```bash
