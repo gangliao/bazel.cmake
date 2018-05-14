@@ -33,7 +33,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/bazel.cma
 include(bazel)
 ```
 
-Then, you can use the built-in **bazel abstracts** to compile your code!
+Then, you can use the built-in **bazel abstracts** to compile your code and run it under any mainstream operating system!
 
 
 ## License
