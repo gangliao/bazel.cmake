@@ -16,7 +16,7 @@
 
 When launching a large open source project, We found that not everyone can adapt to the tremendous higher-level mechanisms CMake offered. We borrow the abstracts from [Bazel](https://bazel.build/) to make it easy for us to do so! Back to 2017, Bazel has not yet matured to support manycore accelerators and even the most popular operating system - Windows. Maybe it's better now, but CMake is still the most powerful building tool for C++.  Last but not least, developers can leverage the elegant abstracts from this module to reach the fine-grained compilation and testing. So we will continue to support this project.
 
-## How to use it ?
+## Preparation
 
 If you create a new project, first add git submodule `bazel.cmake` into your project.
 
@@ -34,6 +34,42 @@ include(bazel)
 ```
 
 Then, you can use the built-in **bazel abstracts** to compile your code and run it under any mainstream operating system!
+
+## Compile Your Code
+
+To compile the following code, you can invoke `cc_library` in CMakeLists.txt.
+
+```c++
+// hello.cc
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+    printf("Hello World!\n");
+    return 0;
+}
+```
+
+```cmake
+# CMakeLists.txt
+cc_binary(hello SRCS hello.cc)
+```
+
+Then, issue the below commands to build an executable.
+
+```bash
+mkdir build && cd build
+cmake ..
+make hello
+```
+
+```bash
+# Build Output
+/build> make hello
+Scanning dependencies of target hello
+[ 50%] Building CXX object c++/CMakeFiles/hello.dir/hello.cc.o
+[100%] Linking CXX executable hello
+[100%] Built target hello
+```
 
 
 ## License
