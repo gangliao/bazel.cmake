@@ -80,7 +80,6 @@ function(detect_installed_gpus out_variable)
         "  }\n"
         "  return 0;\n"
         "}\n")
-        enable_language(CUDA)
 
         try_run(__nvcc_res __compile_result ${PROJECT_BINARY_DIR} ${__cufile}
         COMPILE_OUTPUT_VARIABLE __compile_out
