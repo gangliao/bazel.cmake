@@ -73,16 +73,16 @@ Scanning dependencies of target hello
 
 ## Cheat Sheet
 
-| APIs                                                             | Description | Code Snippets | Linux | Windows | Android | Mac OS X | Apple IOS |
-|------------------------------------------------------------------|-------------|---------------|-------|---------|---------|----------|-----------|
-| cc_library(lib_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             | links         |  yes  |   yes   |   yes   |    yes   |    yes    |
-| cc_library(lib_name DEPS lib1 lib2 ...)                          |             |               |       |         |         |          |           |
-| cc_testing(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             |               |  yes  |   yes   |   yes   |    yes   |    yes    |
-| cc_binary(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...)  |             |               |       |         |         |          |           |
-| nv_library(lib_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             |               |       |         |         |          |           |
-| nv_library(lib_name DEPS lib1 lib2 ...)                          |             |               |       |         |         |          |           |
-| nv_testing(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...) |             |               |       |         |         |          |           |
-| nv_binary(bin_name SRCS src1.cc src2.cc ... DEPS lib1 lib2 ...)  |             |               |       |         |         |          |           |
+| APIs                                              | Description | Code Snippets | Linux | Windows | Android | Mac OS X | Apple IOS |
+|---------------------------------------------------|-------------|---------------|-------|---------|---------|----------|-----------|
+| cc_library(lib_name SRCS src1.cc... DEPS lib1...) |             | links         |  yes  |   yes   |   yes   |    yes   |    yes    |
+| cc_library(lib_name DEPS lib1...)                 |             |               |       |         |         |          |           |
+| cc_testing(bin_name SRCS src1.cc... DEPS lib1...) |             |               |  yes  |   yes   |   yes   |    yes   |    yes    |
+| cc_binary(bin_name SRCS src1.cc... DEPS lib1...)  |             |               |       |         |         |          |           |
+| nv_library(lib_name SRCS src1.cc... DEPS lib1...) |             |               |       |         |         |          |           |
+| nv_library(lib_name DEPS lib1...)                 |             |               |       |         |         |          |           |
+| nv_testing(bin_name SRCS src1.cc... DEPS lib1...) |             |               |       |         |         |          |           |
+| nv_binary(bin_name SRCS src1.cc... DEPS lib1...)  |             |               |       |         |         |          |           |
 
 ## Advanced Options
 
