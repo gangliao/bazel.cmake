@@ -18,7 +18,7 @@ When launching a large open source project, We found that not everyone can adapt
 
 ## How to use it ?
 
-If you create new project, first add git submodule `bazel.cmake` in your project.
+If you create a new project, first add git submodule `bazel.cmake` into your project.
 
 ```bash
 project_dir$ git submodule add --force https://github.com/CMakeHub/bazel.cmake
@@ -32,6 +32,8 @@ current [project's CMakeLists.txt](https://github.com/CMakeHub/demo.bazel.cmake/
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/bazel.cmake/cmake)
 include(bazel)
 ```
+
+
 
 ## License
 
