@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
 cc_binary(hello SRCS hello.cc)
 ```
 
-Then, issue the below commands to build an executable.
+Then, issue the below commands to build an executable for Mac OS or Linux.
 
 ```bash
 mkdir build && cd build
