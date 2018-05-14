@@ -102,7 +102,21 @@ function(detect_installed_gpus out_variable)
         message(WARNING "Automatic GPU detection failed. Building for the default architectures.")
         set(${out_variable} "" PARENT_SCOPE)
     else()
-        set(${out_variable} ${CUDA_gpu_detect_output} PARENT_SCOPE)
+        # remove dots and convert to lists
+        string(REGEX REPLACE "\\." "" CUDA_gpu_detect_output "${CUDA_gpu_detect_output}")
+        string(REGEX MATCHALL "[0-9()]+" CUDA_gpu_detect_output "${CUDA_gpu_detect_output}")
+
+        # Tell NVCC to add binaries for the specified GPUs
+        foreach(__arch ${CUDA_gpu_detect_output})
+          if(__arch MATCHES "([0-9]+)\\(([0-9]+)\\)")
+            # User explicitly specified PTX for the concrete BIN
+            list(APPEND __nvcc_flags -gencode arch=compute_${CMAKE_MATCH_2},code=sm_${CMAKE_MATCH_1})
+          else()
+            # User didn't explicitly specify PTX for the concrete BIN, we assume PTX=BIN
+            list(APPEND __nvcc_flags -gencode arch=compute_${__arch},code=sm_${__arch})
+          endif()
+        endforeach()
+        set(${out_variable} ${__nvcc_flags} PARENT_SCOPE)
     endif()
 endfunction()
 
