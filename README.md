@@ -37,7 +37,7 @@ Then, you can use the built-in **bazel abstracts** to compile your code and run 
 
 ## Compile Your Code
 
-To compile the following code, you can invoke `cc_library` in CMakeLists.txt.
+To compile the [following code](https://github.com/CMakeHub/demo.bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/CMakeHub/demo.bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
 
 ```c++
 // hello.cc
