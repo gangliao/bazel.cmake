@@ -121,4 +121,4 @@ function(detect_installed_gpus out_variable)
 endfunction()
 
 detect_installed_gpus(CUDA_NVCC_ARCH_FLAGS)
-list(APPEND CUDA_NVCC_FLAGS ${CUDA_NVCC_ARCH_FLAGS} -Wno-deprecated-gpu-targets -std=c++11)
+list(APPEND CUDA_NVCC_FLAGS ${CUDA_NVCC_ARCH_FLAGS} -Wno-deprecated-gpu-targets)
