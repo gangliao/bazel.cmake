@@ -72,7 +72,7 @@ Scanning dependencies of target hello
 [100%] Built target hello
 ```
 
-You can verify all test cases in your project by `env GTEST_COLOR=1 ctest -j4` if exists.
+You can verify all test cases in your project by `env GTEST_COLOR=1 ctest -j4` or `make tests` if exists.
 
 ## Advanced Options
 
