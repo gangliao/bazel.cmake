@@ -6,7 +6,7 @@
 
 <center>
 
-| **`Linux CPU|GPU`** | **`Mac OS CPU|GPU`** | **`Windows CPU`** | **`Android`** | **`Apple IOS`** |
+| **`Linux CPU&GPU`** | **`Mac OS CPU&GPU`** | **`Windows CPU`** | **`Android`** | **`Apple IOS`** |
 |---------------------|----------------------|-------------------|---------------|-----------------|
 | [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)            |  [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)                   | [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)                 |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/demo-bazel-cmake)       |     [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)          |
 
