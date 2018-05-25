@@ -74,7 +74,9 @@ Scanning dependencies of target hello
 
 ## Advanced Options
 
-### Build on Windows 
+### Build on Windows
+
+Your host machine must be Windows!
 
 ```bash
 mkdir build && cd build
