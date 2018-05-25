@@ -98,7 +98,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=$PROJECT_DIR/bazel.cmake/third-party/android-cmake/
       -DANDROID_ABI="armeabi-v7a with NEON FP16" \
       -DANDROID_NATIVE_API_LEVEL=21 \
       ..
-make "-j$(sysctl -n hw.ncpu)"
+make -j4
 ```
 
 ### Build on Apple IOS
