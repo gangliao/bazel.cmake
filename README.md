@@ -129,62 +129,54 @@ make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
 # To build a static library example.a from example.cc using the system
 #  compiler (like GCC):
 #
-#   cc_library(example SRCS example.cc)
+    cc_library(example SRCS example.cc)
 #
 # To build a static library example.a from multiple source files
 # example{1,2,3}.cc:
 #
-#   cc_library(example SRCS example1.cc example2.cc example3.cc)
+    cc_library(example SRCS example1.cc example2.cc example3.cc)
 #
 # To build a shared library example.so from example.cc:
 #
-#   cc_library(example SHARED SRCS example.cc)
+    cc_library(example SHARED SRCS example.cc)
 #
 # To build a library using Nvidia's NVCC from .cu file(s), use the nv_
 # prefixed version:
 #
-#   nv_library(example SRCS example.cu)
+    nv_library(example SRCS example.cu)
 #
 # To specify that a library new_example.a depends on other libraies:
 #
-#   cc_library(new_example SRCS new_example.cc DEPS example)
+    cc_library(new_example SRCS new_example.cc DEPS example)
 #
 # Static libraries can be composed of other static libraries:
 #
-#   cc_library(composed DEPS dependent1 dependent2 dependent3)
+    cc_library(composed DEPS dependent1 dependent2 dependent3)
 #
 # To build an executable binary file from some source files and
 # dependent libraries:
 #
-#   cc_binary(example SRCS main.cc something.cc DEPS example1 example2)
+    cc_binary(example SRCS main.cc something.cc DEPS example1 example2)
 #
 # To build an executable binary file using NVCC, use the nv_ prefixed
 # version:
 #
-#   nv_binary(example SRCS main.cc something.cu DEPS example1 example2)
+    nv_binary(example SRCS main.cc something.cu DEPS example1 example2)
 #
 # To build a unit test binary, which is an executable binary with
 # GoogleTest linked:
 #
-#   cc_test(example_test SRCS example_test.cc DEPS example)
+    cc_testing(example_test SRCS example_test.cc DEPS example)
 #
 # To build a unit test binary using NVCC, use the nv_ prefixed version:
 #
-#   nv_test(example_test SRCS example_test.cu DEPS example)
+    nv_testing(example_test SRCS example_test.cu DEPS example)
 #
 # It is pretty often that executable and test binaries depend on
 # pre-defined external libaries like glog and gflags defined in
 # /cmake/external/*.cmake:
 #
-#   cc_test(example_test SRCS example_test.cc DEPS example glog gflags)
-#
-# To build a go static library using Golang, use the go_ prefixed version:
-#
-#   go_library(example STATIC)
-#
-# To build a go shared library using Golang, use the go_ prefixed version:
-#
-#   go_library(example SHARED)
+    cc_testing(example_test SRCS example_test.cc DEPS example glog gflags)
 #
 ```
 
