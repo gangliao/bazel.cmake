@@ -126,6 +126,8 @@ make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
 | nv_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   | no cuda |    yes   |  no cuda  |
 | nv_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   | no cuda |    yes   |  no cuda  |
 
+Note: [DEPS lib1...] is optional syntax rules.
+
 # To build a static library example.a from example.cc using the system
 #  compiler (like GCC):
 #
