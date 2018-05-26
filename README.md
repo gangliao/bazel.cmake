@@ -8,7 +8,7 @@
 
 | **`Linux CPU+GPU`** | **`Mac OS CPU+GPU`** | **`Windows CPU`** | **`Android`** | **`Apple IOS`** |
 |:-------------------:|:-------------------:|:-----------------:|:-------------:|:---------------:|
-| [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)            |  [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/demo-bazel-cmake)       |     [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)          |     [![Build Status](https://travis-ci.com/CMakeHub/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/CMakeHub/demo.bazel.cmake)   |
+| [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)            |  [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/demo-bazel-cmake)       |     [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)          |     [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)   |
 
 </center>
 
@@ -21,12 +21,12 @@ When launching a large open source project, We found that not everyone can adapt
 If you create a new project, first add git submodule `bazel.cmake` into your project.
 
 ```bash
-project_dir$ git submodule add --force https://github.com/CMakeHub/bazel.cmake
+project_dir$ git submodule add --force https://github.com/gangliao/bazel.cmake
 project_dir$ git submodule update --init --recursive
 ```
 
-Just like our demo's repository [**demo.bazel.cmake**](https://github.com/CMakeHub/demo.bazel.cmake), you need to integrate `bazel.cmake` module into 
-current [project's CMakeLists.txt](https://github.com/CMakeHub/demo.bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
+Just like our demo's repository [**demo.bazel.cmake**](https://github.com/gangliao/demo.bazel.cmake), you need to integrate `bazel.cmake` module into 
+current [project's CMakeLists.txt](https://github.com/gangliao/demo.bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
 
 ```cmake
 # CMakeLists.txt
@@ -38,7 +38,7 @@ Then, you can use the built-in **bazel abstracts** to compile your code and run 
 
 ## Compile Your Code
 
-To compile the [following code](https://github.com/CMakeHub/demo.bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/CMakeHub/demo.bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
+To compile the [following code](https://github.com/gangliao/demo.bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/gangliao/demo.bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
 
 ```c++
 // hello.cc
