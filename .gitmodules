@@ -13,3 +13,9 @@
 [submodule "third-party/android-cmake"]
 	path = third-party/android-cmake
 	url = https://github.com/gangliao/android-cmake
+[submodule "third-party/zlib"]
+	path = third-party/zlib
+	url = https://github.com/madler/zlib.git
+[submodule "third-party/protobuf"]
+	path = third-party/protobuf
+	url = https://github.com/google/protobuf.git
