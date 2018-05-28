@@ -14,7 +14,7 @@
 
 cmake_minimum_required(VERSION 3.0)
 
-project(testcase VERSION 0.1.0 LANGUAGES C CXX)
+project(testcase VERSION 0.1.0)
 
 set(TESTCASE_SOURCE_DIR   ${CMAKE_CURRENT_SOURCE_DIR})
 set(TESTCASE_BINARY_DIR   ${CMAKE_CURRENT_BINARY_DIR})
