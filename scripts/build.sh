@@ -36,12 +36,14 @@ elif [[ $OSENV == 'android' ]]; then
           -DANDROID_STANDALONE_TOOLCHAIN=$ANDROID_STANDALONE_TOOLCHAIN \
           -DANDROID_ABI="armeabi-v7a with NEON FP16" \
           -DANDROID_NATIVE_API_LEVEL=21 \
+          -DWITH_PYTHON=OFF \
           ..
     make "-j$(sysctl -n hw.ncpu)"
 else # IOS
     mkdir -p $TRAVIS_BUILD_DIR/test/build_$IOS_PLATFORM && cd $TRAVIS_BUILD_DIR/test/build_$IOS_PLATFORM
     cmake -DCMAKE_TOOLCHAIN_FILE=$TRAVIS_BUILD_DIR/third-party/ios-cmake/toolchain/iOS.cmake \
           -DIOS_PLATFORM=$IOS_PLATFORM \
+          -DWITH_PYTHON=OFF \
           ..
     make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
 fi
