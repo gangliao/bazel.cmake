@@ -25,7 +25,7 @@ project_dir$ git submodule add --force https://github.com/gangliao/bazel.cmake
 project_dir$ git submodule update --init --recursive
 ```
 
-Just like our demo's repository [**demo.bazel.cmake**](https://github.com/gangliao/demo.bazel.cmake), you need to integrate `bazel.cmake` module into 
+Just like our [test directory](https://github.com/gangliao/demo.bazel.cmake), you need to integrate `bazel.cmake` module into 
 current [project's CMakeLists.txt](https://github.com/gangliao/demo.bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
 
 ```cmake
