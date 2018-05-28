@@ -27,9 +27,7 @@ before_build:
       ls
 
 build:
-  project: .\test\build\testcase.sln
-  parallel: true
-  verbosity: minimal
+  - cmake --build . --config %CONFIGURATION% -- -maxcpucount 
 
 test_script:
-  - .\test\build\c++\Release\cpu_id_test.exe
+  - cmake --build . --config %CONFIGURATION% --target RUN_TESTS
