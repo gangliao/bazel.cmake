@@ -26,11 +26,12 @@ before_build:
 
       ls
 
-# msbuild testcase.sln /p:BuildInParallel=true /m:4
-build:
-  project: .\test\build\testcase.sln
-  parallel: true
-  verbosity: minimal
+      msbuild testcase.sln /p:BuildInParallel=true /m:4
 
-# test_script:
-# - cd .\build && ctest --verbose --build-config %CONFIGURATION%
+# build:
+#   project: .\test\build\testcase.sln
+#   parallel: true
+#   verbosity: minimal
+
+test_script:
+  - .\test\build\c++\Release\cpu_id_test.exe

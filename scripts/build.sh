@@ -13,12 +13,12 @@ if [[ $OSENV == 'macosx' ]]; then
     mkdir -p $TRAVIS_BUILD_DIR/test/build_macosx && cd $TRAVIS_BUILD_DIR/test/build_macosx
     cmake ..
     make "-j$(sysctl -n hw.ncpu)"
-    ctest --output-on-failure "-j$(sysctl -n hw.ncpu)" 
+    env GTEST_COLOR=1 ctest --output-on-failure "-j$(sysctl -n hw.ncpu)" 
 elif [[ $OSENV == 'linux' ]]; then
     mkdir -p $TRAVIS_BUILD_DIR/test/build_linux && cd $TRAVIS_BUILD_DIR/test/build_linux
     cmake ..
     make -j `nproc`
-    ctest --output-on-failure -j `nproc`
+    env GTEST_COLOR=1 ctest --output-on-failure -j `nproc`
 elif [[ $OSENV == 'android' ]]; then
     TMP_DIR=$HOME/build_android_tmp
     mkdir -p $TMP_DIR && cd $TMP_DIR
