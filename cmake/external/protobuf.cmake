@@ -191,6 +191,9 @@ FUNCTION(build_protobuf TARGET_NAME BUILD_FOR_HOST)
             "-DZLIB_FOUND=True"
             "-DZLIB_INCLUDE_DIRS=${ZLIB_INCLUDE_DIR}"
             "-DZLIB_LIBRARIES=${ZLIB_LIBRARIES}")
+        IF(CMAKE_CROSSCOMPILING)
+            SET(OPTIONAL_ARGS ${OPTIONAL_ARGS} "-Dprotobuf_BUILD_PROTOC_BINARIES=OFF")
+        ENDIF()
     ENDIF()
 
     ExternalProject_Add(
