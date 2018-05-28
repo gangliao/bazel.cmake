@@ -32,7 +32,7 @@ elif [[ $OSENV == 'android' ]]; then
     # Create the build directory for CMake.
     mkdir -p $TRAVIS_BUILD_DIR/test/build_android && cd $TRAVIS_BUILD_DIR/test/build_android
 
-    cmake -DCMAKE_TOOLCHAIN_FILE=$TRAVIS_BUILD_DIR/test/bazel.cmake/third-party/android-cmake/android.toolchain.cmake \
+    cmake -DCMAKE_TOOLCHAIN_FILE=$TRAVIS_BUILD_DIR/third-party/android-cmake/android.toolchain.cmake \
           -DANDROID_STANDALONE_TOOLCHAIN=$ANDROID_STANDALONE_TOOLCHAIN \
           -DANDROID_ABI="armeabi-v7a with NEON FP16" \
           -DANDROID_NATIVE_API_LEVEL=21 \
@@ -40,7 +40,7 @@ elif [[ $OSENV == 'android' ]]; then
     make "-j$(sysctl -n hw.ncpu)"
 else # IOS
     mkdir -p $TRAVIS_BUILD_DIR/test/build_$IOS_PLATFORM && cd $TRAVIS_BUILD_DIR/test/build_$IOS_PLATFORM
-    cmake -DCMAKE_TOOLCHAIN_FILE=$TRAVIS_BUILD_DIR/test/bazel.cmake/third-party/ios-cmake/toolchain/iOS.cmake \
+    cmake -DCMAKE_TOOLCHAIN_FILE=$TRAVIS_BUILD_DIR/third-party/ios-cmake/toolchain/iOS.cmake \
           -DIOS_PLATFORM=$IOS_PLATFORM \
           ..
     make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
