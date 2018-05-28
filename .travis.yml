@@ -1,0 +1,58 @@
+language: cpp
+sudo: required
+dist: trusty
+
+cache:
+  directories:
+    - $TRAVIS_BUILD_DIR/test/build_macosx/third_party
+    - $TRAVIS_BUILD_DIR/test/build_linux/third_party
+    - $TRAVIS_BUILD_DIR/test/build_android/third_party
+    - $TRAVIS_BUILD_DIR/test/build_SIMULATOR/third_party
+    - $TRAVIS_BUILD_DIR/test/build_OS/third_party
+    - $TRAVIS_BUILD_DIR/test/build_WATCHOS/third_party
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      env: OSENV=linux
+    - os: osx
+      env: OSENV=android
+      osx_image: xcode9.0
+    - os: osx
+      env: OSENV=macosx
+      osx_image: xcode9.0
+    - os: osx
+      compiler: clang
+      env: IOS_PLATFORM=SIMULATOR
+      osx_image: xcode9.0
+    - os: osx
+      compiler: clang
+      env: IOS_PLATFORM=OS
+      osx_image: xcode9.0
+    # - os: osx
+    #   compiler: clang
+    #   env: IOS_PLATFORM=WATCHOS
+    #   osx_image: xcode9.0
+
+addons:
+  apt:
+    packages:
+      - gcc-4.8
+      - g++-4.8
+      - clang-format-3.8
+      - build-essential
+      - automake
+      - libtool
+      - ccache
+      - cmake
+      - curl
+      - git
+
+script:
+  - scripts/build.sh
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
