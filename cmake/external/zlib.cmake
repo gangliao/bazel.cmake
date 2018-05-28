@@ -31,6 +31,7 @@ ExternalProject_Add(
     extern_zlib
     ${EXTERNAL_PROJECT_LOG_ARGS}
     SOURCE_DIR       ${ZLIB_SOURCES_DIR}
+    GIT_TAG          "v1.2.8"
     UPDATE_COMMAND   ""
     DOWNLOAD_COMMAND ""
     ${EXTERNAL_PROJECT_CMAKE_ARGS}
