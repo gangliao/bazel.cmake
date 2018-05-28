@@ -90,9 +90,9 @@ msbuild testcase.sln /p:BuildInParallel=true /m:4
 
 ```bash
 # Download and decompress Android ndk 
-wget -c https://dl.google.com/android/repository/android-ndk-r14b-darwin-x86_64.zip && unzip -q android-ndk-r14b-darwin-x86_64.zip
+wget -c https://dl.google.com/android/repository/android-ndk-r17-darwin-x86_64.zip && unzip -q android-ndk-r17-darwin-x86_64.zip
 ANDROID_STANDALONE_TOOLCHAIN=`pwd`/android-toolchain-gcc
-android-ndk-r14b/build/tools/make-standalone-toolchain.sh --force --arch=arm --platform=android-21 --install-dir=$ANDROID_STANDALONE_TOOLCHAIN
+android-ndk-r17/build/tools/make-standalone-toolchain.sh --force --arch=arm --platform=android-21 --install-dir=$ANDROID_STANDALONE_TOOLCHAIN
 
 # Create the build directory for CMake.
 mkdir build && cd build
