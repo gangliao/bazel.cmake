@@ -126,7 +126,6 @@ make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
 | cc_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   |   yes   |    yes   |    yes    |
 | nv_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   | no cuda |    yes   |  no cuda  |
-| nv_library(lib_name DEPS lib1...)                   |  yes  |   TBD   | no cuda |    yes   |  no cuda  |
 | nv_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   | no cuda |    yes   |  no cuda  |
 | nv_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   | no cuda |    yes   |  no cuda  |
 
