@@ -8,7 +8,7 @@
 
 | **`Linux CPU+GPU`** | **`Mac OS CPU+GPU`** | **`Windows CPU`** | **`Android`** | **`Apple IOS`** |
 |:-------------------:|:-------------------:|:-----------------:|:-------------:|:---------------:|
-| [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)            |  [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/demo-bazel-cmake)       |     [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)          |     [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)   |
+| [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)            |  [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/bazel-cmake)       |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)          |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)   |
 
 </center>
 
@@ -25,8 +25,8 @@ project_dir$ git submodule add --force https://github.com/gangliao/bazel.cmake
 project_dir$ git submodule update --init --recursive
 ```
 
-Just like our [test directory](https://github.com/gangliao/demo.bazel.cmake), you need to integrate `bazel.cmake` module into 
-current [project's CMakeLists.txt](https://github.com/gangliao/demo.bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
+Just like our [test directory](https://github.com/gangliao/bazel.cmake), you need to integrate `bazel.cmake` module into 
+current [project's CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
 
 ```cmake
 # CMakeLists.txt
@@ -38,7 +38,7 @@ Then, you can use the built-in **bazel abstracts** to compile your code and run 
 
 ## Compile Your Code
 
-To compile the [following code](https://github.com/gangliao/demo.bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/gangliao/demo.bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
+To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
 
 ```c++
 // hello.cc
