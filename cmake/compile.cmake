@@ -12,13 +12,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+	message(STATUS "Found ccache to speed up recompilation!")
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+else(CCACHE_FOUND)
+    message(WARNING "Couldn't find ccache!")
+endif(CCACHE_FOUND)
+
 # external dependencies build args for mobile
-IF(CMAKE_TOOLCHAIN_FILE AND IOS_PLATFORM)
+IF(CMAKE_TOOLCHAIN_FILE)
+    IF(IOS_PLATFORM)
         SET(EXTERNAL_PROJECT_CMAKE_ARGS
             CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
             CMAKE_ARGS -DIOS_PLATFORM=${IOS_PLATFORM}
         )
-        add_definitions(-D__arm__)
+    ELSE(IOS_PLATFORM)
+        SET(EXTERNAL_PROJECT_CMAKE_ARGS
+            CMAKE_ARGS -DANDROID_STANDALONE_TOOLCHAIN=${ANDROID_STANDALONE_TOOLCHAIN}
+            CMAKE_ARGS -DANDROID_ABI=${ANDROID_ABI}
+            CMAKE_ARGS -DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
+        )
+    ENDIF(IOS_PLATFORM)
+    add_definitions(-D__arm__)
 ELSE()
     SET(EXTERNAL_PROJECT_CMAKE_ARGS "")
 ENDIF()

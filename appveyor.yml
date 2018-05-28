@@ -1,0 +1,39 @@
+version: 1.0.{build}
+
+# Ignore testing a commit if only the README.md file changed
+# Or if various strings are found in the commit message: updated readme, update readme, update docs, update version, update appveyor
+skip_commits:
+  files:
+    - README.md
+  message: /updated readme.*|update readme.*s|update docs.*|update version.*|update appveyor.*/
+
+configuration:
+- Release
+
+environment:
+  matrix:
+  # - VS_VERSION: 14 2015
+  #   VS_PLATFORM: win32
+  - VS_VERSION: 14 2015
+    VS_PLATFORM: x64
+  # - VS_VERSION: 15 2017
+  #   VS_PLATFORM: x64
+
+before_build:
+  - cmd: >- 
+      git submodule update --init --recursive
+
+      cd .\test
+      
+      mkdir build
+      
+      cd .\build
+
+      cmake .. -G "Visual Studio %VS_VERSION%" -DCMAKE_GENERATOR_PLATFORM=%VS_PLATFORM% -Wno-dev
+
+
+build_script:
+  - cmake --build . --config %CONFIGURATION% -- -maxcpucount 
+
+test_script:
+  - cmake --build . --config %CONFIGURATION% --target RUN_TESTS

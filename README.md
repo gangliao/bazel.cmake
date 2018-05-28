@@ -8,7 +8,7 @@
 
 | **`Linux CPU+GPU`** | **`Mac OS CPU+GPU`** | **`Windows CPU`** | **`Android`** | **`Apple IOS`** |
 |:-------------------:|:-------------------:|:-----------------:|:-------------:|:---------------:|
-| [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)            |  [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/demo-bazel-cmake)       |     [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)          |     [![Build Status](https://travis-ci.com/gangliao/demo.bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/demo.bazel.cmake)   |
+| [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)            |  [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/bazel-cmake)       |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)          |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)   |
 
 </center>
 
@@ -25,8 +25,8 @@ project_dir$ git submodule add --force https://github.com/gangliao/bazel.cmake
 project_dir$ git submodule update --init --recursive
 ```
 
-Just like our demo's repository [**demo.bazel.cmake**](https://github.com/gangliao/demo.bazel.cmake), you need to integrate `bazel.cmake` module into 
-current [project's CMakeLists.txt](https://github.com/gangliao/demo.bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
+Just like our [test directory](https://github.com/gangliao/bazel.cmake), you need to integrate `bazel.cmake` module into 
+current [project's CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
 
 ```cmake
 # CMakeLists.txt
@@ -38,7 +38,7 @@ Then, you can use the built-in **bazel abstracts** to compile your code and run 
 
 ## Compile Your Code
 
-To compile the [following code](https://github.com/gangliao/demo.bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/gangliao/demo.bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
+To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
 
 ```c++
 // hello.cc
@@ -90,9 +90,9 @@ msbuild testcase.sln /p:BuildInParallel=true /m:4
 
 ```bash
 # Download and decompress Android ndk 
-wget -c https://dl.google.com/android/repository/android-ndk-r14b-darwin-x86_64.zip && unzip -q android-ndk-r14b-darwin-x86_64.zip
+wget -c https://dl.google.com/android/repository/android-ndk-r17-darwin-x86_64.zip && unzip -q android-ndk-r17-darwin-x86_64.zip
 ANDROID_STANDALONE_TOOLCHAIN=`pwd`/android-toolchain-gcc
-android-ndk-r14b/build/tools/make-standalone-toolchain.sh --force --arch=arm --platform=android-21 --install-dir=$ANDROID_STANDALONE_TOOLCHAIN
+android-ndk-r17/build/tools/make-standalone-toolchain.sh --force --arch=arm --platform=android-21 --install-dir=$ANDROID_STANDALONE_TOOLCHAIN
 
 # Create the build directory for CMake.
 mkdir build && cd build
@@ -126,7 +126,6 @@ make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
 | cc_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   |   yes   |    yes   |    yes    |
 | nv_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   | no cuda |    yes   |  no cuda  |
-| nv_library(lib_name DEPS lib1...)                   |  yes  |   TBD   | no cuda |    yes   |  no cuda  |
 | nv_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   | no cuda |    yes   |  no cuda  |
 | nv_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   | no cuda |    yes   |  no cuda  |
 
