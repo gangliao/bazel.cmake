@@ -49,6 +49,9 @@ addons:
       - curl
       - git
 
+ignore:
+  - *.md
+
 script:
   - scripts/build.sh
 
