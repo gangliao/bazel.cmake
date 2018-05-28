@@ -27,3 +27,4 @@ include(bazel)
 
 add_subdirectory(c++)
 add_subdirectory(cuda)
+add_subdirectory(proto)
