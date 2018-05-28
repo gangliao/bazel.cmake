@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+	message(STATUS "Found ccache to speed up recompilation!")
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+else(CCACHE_FOUND)
+    message(WARNING "Couldn't find ccache!")
+endif(CCACHE_FOUND)
+
 # external dependencies build args for mobile
 IF(CMAKE_TOOLCHAIN_FILE AND IOS_PLATFORM)
         SET(EXTERNAL_PROJECT_CMAKE_ARGS

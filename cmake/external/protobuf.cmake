@@ -93,9 +93,9 @@ endif()
 macro(PROMPT_PROTOBUF_LIB)
     SET(protobuf_DEPS ${ARGN})
 
-    MESSAGE(STATUS "Protobuf protoc executable: ${PROTOBUF_PROTOC_EXECUTABLE}")
-    MESSAGE(STATUS "Protobuf library: ${PROTOBUF_LIBRARY}")
-    MESSAGE(STATUS "Protobuf version: ${PROTOBUF_VERSION}")
+    MESSAGE(STATUS "Google/protobuf executable: ${PROTOBUF_PROTOC_EXECUTABLE}")
+    MESSAGE(STATUS "Google/protobuf library: ${PROTOBUF_LIBRARY}")
+    MESSAGE(STATUS "Google/protobuf version: ${PROTOBUF_VERSION}")
     INCLUDE_DIRECTORIES(${PROTOBUF_INCLUDE_DIR})
 
     # Assuming that all the protobuf libraries are of the same type.
@@ -223,6 +223,7 @@ IF(CMAKE_CROSSCOMPILING)
     build_protobuf(protobuf_host TRUE)
     SET(PROTOBUF_PROTOC_EXECUTABLE ${protobuf_host_PROTOC_EXECUTABLE}
         CACHE FILEPATH "protobuf executable." FORCE)
+    SET_PROTOBUF_VERSION()
 ENDIF()
 
 IF(NOT PROTOBUF_FOUND)
@@ -242,6 +243,7 @@ IF(NOT PROTOBUF_FOUND)
     ELSE()
         SET(PROTOBUF_PROTOC_EXECUTABLE ${extern_protobuf_PROTOC_EXECUTABLE}
             CACHE FILEPATH "protobuf executable." FORCE)
+        SET_PROTOBUF_VERSION()
         PROMPT_PROTOBUF_LIB(extern_protobuf)
     ENDIF()
 ENDIF(NOT PROTOBUF_FOUND)

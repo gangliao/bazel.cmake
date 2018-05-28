@@ -56,3 +56,5 @@ IF(WIN32)
     # https://groups.google.com/forum/#!topic/google-gflags/cM4DuGOS_GI
     LINK_LIBRARIES("shlwapi.lib")
 ENDIF(WIN32)
+
+MESSAGE(STATUS "Google/gflags library: ${GFLAGS_LIBRARIES}")
