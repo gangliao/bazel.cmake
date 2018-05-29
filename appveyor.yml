@@ -23,7 +23,7 @@ before_build:
   - cmd: >- 
       git submodule update --init --recursive
 
-      pip install protobuf==3.4.0
+      pip install protobuf==3.5.2
 
       cd .\test
       
