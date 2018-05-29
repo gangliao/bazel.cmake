@@ -37,6 +37,8 @@ elif [[ $OSENV == 'android' ]]; then
           -DANDROID_ABI="armeabi-v7a with NEON FP16" \
           -DANDROID_NATIVE_API_LEVEL=21 \
           -DWITH_PYTHON=OFF \
+          -DHOST_CXX_COMPILER=/usr/bin/c++ \
+          -DHOST_C_COMPILER=/usr/bin/cc \
           ..
     make "-j$(sysctl -n hw.ncpu)"  VERBOSE=1
 else # IOS
@@ -44,6 +46,8 @@ else # IOS
     cmake -DCMAKE_TOOLCHAIN_FILE=$TRAVIS_BUILD_DIR/third-party/ios-cmake/toolchain/iOS.cmake \
           -DIOS_PLATFORM=$IOS_PLATFORM \
           -DWITH_PYTHON=OFF \
+          -DHOST_CXX_COMPILER=/usr/bin/c++ \
+          -DHOST_C_COMPILER=/usr/bin/cc \
           ..
     make "-j$(sysctl -n hw.ncpu)"
 fi
