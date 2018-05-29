@@ -159,7 +159,7 @@ function(py_testing)
     set(multiValueArgs SRCS DEPS ARGS ENVS)
     cmake_parse_arguments(py_testing "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     add_test(NAME ${ARGV0}
-             COMMAND env PYTHONPATH=${CMAKE_SOURCE_DIR}/python:${CMAKE_BINARY_DIR}/proto ${py_testing_ENVS}
+             COMMAND env PYTHONPATH=${CMAKE_SOURCE_DIR}/python:${CMAKE_CURRENT_BINARY_DIR} ${py_testing_ENVS}
              ${PYTHON_EXECUTABLE} ${py_testing_SRCS} ${py_testing_ARGS}
              WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
   endif(WITH_PYTHON)
