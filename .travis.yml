@@ -54,7 +54,9 @@ addons:
       - git
 
 script:
-  - sudo pip install --upgrade pip && sudo pip install protobuf==3.4.0
+  - sudo pip install --upgrade pip
+  - sudo pip install --ignore-installed six
+  - sudo pip install protobuf==3.4.0
   - scripts/build.sh
 
 notifications:
