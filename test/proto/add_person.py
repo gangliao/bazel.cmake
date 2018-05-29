@@ -13,30 +13,29 @@ except NameError:
 
 # This function fills in a Person message based on user input.
 def PromptForAddress(person):
-  person.id = int(raw_input("Enter person ID number: "))
-  person.name = raw_input("Enter name: ")
+  print("Enter person ID number: 10")
+  person.id = 10
+  print("Enter name: Gang Liao")
+  person.name = "Gang Liao"
 
-  email = raw_input("Enter email address (blank for none): ")
-  if email != "":
-    person.email = email
+  print("Enter email address (blank for none): gangliao@umd.edu")
+  person.email = "gangliao@umd.edu"
 
-  while True:
-    number = raw_input("Enter a phone number (or leave blank to finish): ")
-    if number == "":
-      break
+  print("Enter a phone number (or leave blank to finish): 10")
 
-    phone_number = person.phones.add()
-    phone_number.number = number
+  phone_number = person.phones.add()
+  phone_number.number = "10101010"
 
-    type = raw_input("Is this a mobile, home, or work phone? ")
-    if type == "mobile":
-      phone_number.type = addressbook_pb2.Person.MOBILE
-    elif type == "home":
-      phone_number.type = addressbook_pb2.Person.HOME
-    elif type == "work":
-      phone_number.type = addressbook_pb2.Person.WORK
-    else:
-      print("Unknown phone type; leaving as default value.")
+  print("Is this a mobile, home, or work phone? mobile")
+  type = "mobile"
+  if type == "mobile":
+    phone_number.type = addressbook_pb2.Person.MOBILE
+  elif type == "home":
+    phone_number.type = addressbook_pb2.Person.HOME
+  elif type == "work":
+    phone_number.type = addressbook_pb2.Person.WORK
+  else:
+    print("Unknown phone type; leaving as default value.")
 
 
 # Main procedure:  Reads the entire address book from a file,

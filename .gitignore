@@ -10,3 +10,4 @@ CTestTestfile.cmake
 
 build
 *.pyc
+*.bin
