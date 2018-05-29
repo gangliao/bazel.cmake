@@ -19,6 +19,3 @@
 [submodule "third-party/protobuf"]
 	path = third-party/protobuf
 	url = https://github.com/gangliao/protobuf.git
-[submodule "third-party/v3.5.0"]
-	path = third-party/v3.5.0
-	url = https://github.com/gangliao/protobuf.git
