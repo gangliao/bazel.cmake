@@ -258,7 +258,6 @@ ENDIF()
 
 IF(NOT PROTOBUF_FOUND)
     build_protobuf(extern_protobuf FALSE)
-    ADD_DEPENDENCIES(extern_protobuf protobuf_host)
 
     SET(PROTOBUF_INCLUDE_DIR ${extern_protobuf_INCLUDE_DIR}
         CACHE PATH "protobuf include directory." FORCE)
@@ -270,6 +269,7 @@ IF(NOT PROTOBUF_FOUND)
         CACHE FILEPATH "protoc library." FORCE)
 
     IF(CMAKE_CROSSCOMPILING)
+        ADD_DEPENDENCIES(extern_protobuf protobuf_host)
         PROMPT_PROTOBUF_LIB(protobuf_host extern_protobuf)
     ELSE()
         SET(PROTOBUF_PROTOC_EXECUTABLE ${extern_protobuf_PROTOC_EXECUTABLE}
