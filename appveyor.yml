@@ -38,4 +38,4 @@ build_script:
   - cmake --build . --config %CONFIGURATION% -- -maxcpucount 
 
 test_script:
-  - cmake --build . --config %CONFIGURATION% --target RUN_TESTS
+  - cmake -E env CTEST_OUTPUT_ON_FAILURE=1 cmake --build . --config %CONFIGURATION% --target RUN_TESTS
