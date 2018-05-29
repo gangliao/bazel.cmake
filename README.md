@@ -112,6 +112,7 @@ mkdir build && cd build
 PROJECT_DIR=...
 cmake -DCMAKE_TOOLCHAIN_FILE=$PROJECT_DIR/bazel.cmake/third-party/ios-cmake/toolchain/iOS.cmake \
       -DIOS_PLATFORM=OS \
+      -DWITH_PYTHON=OFF \
       ..
 make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
 ```
