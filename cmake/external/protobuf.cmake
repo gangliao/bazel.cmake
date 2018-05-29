@@ -51,6 +51,8 @@ function(_protobuf_generate_cpp SRCS HDRS)
   set_source_files_properties(${${SRCS}} ${${HDRS}} PROPERTIES GENERATED TRUE)
   set(${SRCS} ${${SRCS}} PARENT_SCOPE)
   set(${HDRS} ${${HDRS}} PARENT_SCOPE)
+  message(STATUS "Generate Protobuf CPP Source Files: ${${SRCS}}")
+  message(STATUS "Generate Protobuf CPP Header Files: ${${HDRS}}")
 endfunction()
 
 function(_protobuf_generate_python SRCS)
@@ -106,9 +108,11 @@ function(_protobuf_generate_python SRCS)
                 DEPENDS ${ABS_FIL} ${Protobuf_PROTOC_EXECUTABLE}
                 COMMENT "Running Python protocol buffer compiler on ${FIL}"
                 VERBATIM )
+        message("#### HAHAHH")
     endforeach()
 
     set(${SRCS} ${${SRCS}} PARENT_SCOPE)
+    message(STATUS "Generate Protobuf Python Source Files: ${${SRCS}}")
 endfunction()
 
 # Print and set the protobuf library information,

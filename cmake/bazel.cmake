@@ -138,7 +138,7 @@ function(proto_library)
   cmake_parse_arguments(proto_library "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   _protobuf_generate_cpp(proto_srcs proto_hdrs ${proto_library_SRCS})
-  _protobuf_generate_python(py_srcs "${proto_library_SRCS}")
+  _protobuf_generate_python(py_srcs ${proto_library_SRCS})
 
   # including binary directory for generated headers (protobuf hdrs).
   include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -161,8 +161,8 @@ function(py_testing)
     set(multiValueArgs SRCS DEPS ARGS ENVS)
     cmake_parse_arguments(py_testing "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     add_test(NAME ${ARGV0}
-             COMMAND env PYTHONPATH=${CMAKE_SOURCE_DIR}/python:${CMAKE_CURRENT_BINARY_DIR} ${py_testing_ENVS}
-             ${PYTHON_EXECUTABLE} ${py_testing_SRCS} ${py_testing_ARGS}
-             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+      COMMAND env PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR} ${py_testing_ENVS}
+      ${PYTHON_EXECUTABLE} ${py_testing_SRCS} ${py_testing_ARGS}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
   endif(WITH_PYTHON)
 endfunction()
