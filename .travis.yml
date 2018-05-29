@@ -54,6 +54,7 @@ addons:
       - git
 
 script:
+  - pip install --upgrade pip && pip install protobuf==3.4.0
   - scripts/build.sh
 
 notifications:
