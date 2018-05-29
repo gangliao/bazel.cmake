@@ -35,7 +35,9 @@ get_filename_component(BAZEL_THIRD_PARTY_DIR ${CMAKE_CURRENT_LIST_DIR} DIRECTORY
 set(BAZEL_THIRD_PARTY_DIR ${BAZEL_THIRD_PARTY_DIR}/third-party)
 
 include(color)
-include(host)
+if(NOT CMAKE_CROSSCOMPILING)
+  include(host)
+endif(NOT CMAKE_CROSSCOMPILING)
 include(compile)
 include(merge_libs)
 include(external/cuda)
