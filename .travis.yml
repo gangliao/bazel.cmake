@@ -40,6 +40,10 @@ addons:
     packages:
       - gcc-4.8
       - g++-4.8
+      - python
+      - python-pip
+      - python2.7-dev
+      - python-wheel
       - clang-format-3.8
       - build-essential
       - automake
