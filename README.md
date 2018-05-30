@@ -26,7 +26,7 @@ project_dir$ git submodule update --init --recursive
 ```
 
 Just like our [test directory](https://github.com/gangliao/bazel.cmake/tree/master/test), you need to integrate `bazel.cmake` module into 
-current [project's CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/0f3658f2a413f580499adc8a205ebc2765b89e2b/test/CMakeLists.txt#L22-L26) as follows:
+current [project's CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/master/test/CMakeLists.txt#L24-L26) as follows:
 
 ```cmake
 # CMakeLists.txt
@@ -38,7 +38,7 @@ Then, you can use the built-in **bazel abstracts** to compile your code and run 
 
 ## Compile Your Code
 
-To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/test/c%2B%2B/hello.cc), you can invoke `cc_testing` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/master/test/c%2B%2B/CMakeLists.txt#L4).
+To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/test/c++/hello.cc), you can invoke `cc_testing` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/master/test/c++/CMakeLists.txt#L4).
 
 ```c++
 // bazel.cmake/test/c++/hello.cc
@@ -63,13 +63,10 @@ Then, issue the below commands to build an executable for **Mac OS X or Linux**.
 
 ```bash
 project_dir$ mkdir build && cd build
-project_dir$ cmake ..
-project_dir$ make hello
-```
-
-```bash
-# Build Output
+project_dir/build$ cmake ..
 project_dir/build$ make hello
+
+# Build Output
 Scanning dependencies of target hello
 [ 50%] Building CXX object c++/CMakeFiles/hello.dir/hello.cc.o
 [100%] Linking CXX executable hello
