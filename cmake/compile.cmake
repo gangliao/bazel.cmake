@@ -34,6 +34,7 @@ IF(CMAKE_TOOLCHAIN_FILE)
             CMAKE_ARGS -DANDROID_ABI=${ANDROID_ABI}
             CMAKE_ARGS -DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
         )
+        set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -llog")
     ENDIF(IOS_PLATFORM)
     add_definitions(-D__arm__)
 ELSE()
@@ -70,7 +71,7 @@ if(MSVC)
 else(MSVC)
     include(CheckCXXCompilerFlag)
     CHECK_CXX_COMPILER_FLAG("-std=c++11"    SUPPORT_CXX11)
-    set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -fPIC")
+    set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -fPIC -Wno-unused-local-typedef -Wno-sign-compare")
 endif(MSVC)
 
 
@@ -139,3 +140,13 @@ endfunction()
 
 detect_installed_gpus(CUDA_NVCC_ARCH_FLAGS)
 list(APPEND CUDA_NVCC_FLAGS ${CUDA_NVCC_ARCH_FLAGS} -Wno-deprecated-gpu-targets)
+
+# external dependencies log output
+SET(EXTERNAL_PROJECT_LOG_ARGS
+    LOG_DOWNLOAD    0     # Wrap download in script to log output
+    LOG_UPDATE      1     # Wrap update in script to log output
+    LOG_CONFIGURE   1     # Wrap configure in script to log output
+    LOG_BUILD       0     # Wrap build in script to log output
+    LOG_TEST        1     # Wrap test in script to log output
+    LOG_INSTALL     0     # Wrap install in script to log output
+)

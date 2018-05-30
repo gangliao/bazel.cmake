@@ -35,6 +35,9 @@ get_filename_component(BAZEL_THIRD_PARTY_DIR ${CMAKE_CURRENT_LIST_DIR} DIRECTORY
 set(BAZEL_THIRD_PARTY_DIR ${BAZEL_THIRD_PARTY_DIR}/third-party)
 
 include(color)
+if(CMAKE_CROSSCOMPILING)
+  include(host)
+endif(CMAKE_CROSSCOMPILING)
 include(compile)
 include(merge_libs)
 include(external/cuda)
@@ -44,9 +47,6 @@ include(external/gtest)
 include(external/python)
 include(external/zlib)
 include(external/protobuf)
-
-# including binary directory for generated headers (protobuf hdrs).
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 macro(_build_target func_tag)
   set(_sources ${ARGN})
@@ -98,7 +98,12 @@ function(cc_binary)
 endfunction(cc_binary)
 
 function(cc_testing)
-  cmake_library(${ARGV} TAG cc_bin DEPS gtest gtest_main)
+  set(_args ${ARGV})
+  list(FILTER _args INCLUDE REGEX "gtest+")
+  if (_args)
+    set(test_main DEPS gtest_main)
+  endif(_args)
+  cmake_library(${ARGV} TAG cc_bin ${test_main})
   add_test(${ARGV0} ${ARGV0})
 endfunction(cc_testing)
 
@@ -116,7 +121,12 @@ endfunction(nv_binary)
 
 function(nv_testing)
   if (WITH_GPU)
-    cmake_library(${ARGV} TAG nv_bin DEPS gtest gtest_main)
+    set(_args ${ARGV})
+    list(FILTER _args INCLUDE REGEX "gtest+")
+    if (_args)
+      set(test_main DEPS gtest_main)
+    endif(_args)
+    cmake_library(${ARGV} TAG nv_bin ${test_main})
     add_test(${ARGV0} ${ARGV0})
   endif(WITH_GPU)
 endfunction(nv_testing)
@@ -127,10 +137,12 @@ function(proto_library)
   set(multiValueArgs SRCS DEPS)
   cmake_parse_arguments(proto_library "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  protobuf_generate_cpp(proto_srcs proto_hdrs ${proto_library_SRCS})
-  protobuf_generate_python(py_srcs ${proto_library_SRCS})
+  _protobuf_generate_cpp(proto_srcs proto_hdrs ${proto_library_SRCS})
+  _protobuf_generate_python(py_srcs ${proto_library_SRCS})
 
-  cmake_library(${ARGV} SRCS ${proto_srcs} DEPS protobuf TAG cc_lib)
+  # including binary directory for generated headers (protobuf hdrs).
+  include_directories(${CMAKE_CURRENT_BINARY_DIR})
+  cmake_library(${ARGV} SRCS ${proto_srcs} ${proto_hdrs} DEPS protobuf TAG cc_lib)
 
   add_custom_target(py_${ARGV0} ALL DEPENDS ${py_srcs})
   # Create __init__.py in all ancestor directories of where the .proto
@@ -148,9 +160,9 @@ function(py_testing)
     set(oneValueArgs "")
     set(multiValueArgs SRCS DEPS ARGS ENVS)
     cmake_parse_arguments(py_testing "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
-    add_test(NAME ${TARGET_NAME}
-             COMMAND env PYTHONPATH=${CMAKE_SOURCE_DIR}/python:${CMAKE_BINARY_DIR} ${py_testing_ENVS}
-             ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${py_testing_SRCS} ${py_testing_ARGS}
-             WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+    add_test(NAME ${ARGV0}
+      COMMAND env PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR} ${py_testing_ENVS}
+      ${PYTHON_EXECUTABLE} ${py_testing_SRCS} ${py_testing_ARGS}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
   endif(WITH_PYTHON)
 endfunction()

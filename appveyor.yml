@@ -23,17 +23,19 @@ before_build:
   - cmd: >- 
       git submodule update --init --recursive
 
+      pip install protobuf==3.5.2
+
       cd .\test
       
       mkdir build
       
       cd .\build
 
-      cmake .. -G "Visual Studio %VS_VERSION%" -DCMAKE_GENERATOR_PLATFORM=%VS_PLATFORM% -Wno-dev
+      cmake .. -G "Visual Studio %VS_VERSION%" -A x64 -DCMAKE_GENERATOR_PLATFORM=%VS_PLATFORM% -Wno-dev
 
 
 build_script:
   - cmake --build . --config %CONFIGURATION% -- -maxcpucount 
 
 test_script:
-  - cmake --build . --config %CONFIGURATION% --target RUN_TESTS
+  - cmake -E env CTEST_OUTPUT_ON_FAILURE=1 cmake --build . --config %CONFIGURATION% --target RUN_TESTS

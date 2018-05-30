@@ -21,7 +21,10 @@ function(merge_static_libs TARGET_NAME)
   foreach(lib ${libs})
     list(APPEND libs_deps ${${lib}_LIB_DEPENDS})
   endforeach()
-  list(REMOVE_DUPLICATES libs_deps)
+  
+  if(libs_deps)
+    list(REMOVE_DUPLICATES libs_deps)
+  endif()
 
   if(APPLE) # Use OSX's libtool to merge archives
     # To produce a library we need at least one source file,
