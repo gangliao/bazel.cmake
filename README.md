@@ -150,9 +150,11 @@ make "-j$(sysctl -n hw.ncpu)"
 | cc_library(lib_name DEPS lib1...)                   |  yes  |   TBD   |   yes   |    yes   |    yes    |
 | cc_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   |   yes   |    yes   |    yes    |
-| nv_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   | no cuda |    yes   |  no cuda  |
-| nv_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   | no cuda |    yes   |  no cuda  |
-| nv_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   | no cuda |    yes   |  no cuda  |
+| nv_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   no    |    yes   |    no     |
+| nv_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   no    |    yes   |    no     |
+| nv_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   |   no    |    yes   |    no     |
+| proto_library(lib_name SRCS src.proto [DEPS lib1])  |  yes  |   yes   |   yes   |    yes   |    yes    |
+| py_testing(name SRCS src.py ARGS arg1 [DEPS lib1])  |  yes  |   yes   |   no    |    yes   |    no     |
 
 Note: [DEPS lib1...] is optional syntax rules.
 
@@ -211,6 +213,10 @@ Note: [DEPS lib1...] is optional syntax rules.
 # To generate protobuf cpp code using protoc and build a protobuf library.
 # It will also generate protobuf python code.
     proto_library(example SRCS example.proto DEPS dependent1)
+#
+# To generate protobuf cpp code using protoc and build a protobuf library.
+# It will also generate protobuf python code.
+    py_testing(example_test ENVS var=value SRCS example.py ARGS args1 args2 DEPS dependent1)
 #
 ```
 
