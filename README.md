@@ -25,8 +25,8 @@ project_dir$ git submodule add --force https://github.com/gangliao/bazel.cmake
 project_dir$ git submodule update --init --recursive
 ```
 
-Just like our [test directory](https://github.com/gangliao/bazel.cmake), you need to integrate `bazel.cmake` module into 
-current [project's CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/b6d882c706e4d0ea16cf2152489af9b583b94537/CMakeLists.txt#L23-L26) as follows:
+Just like our [test directory](https://github.com/gangliao/bazel.cmake/tree/master/test), you need to integrate `bazel.cmake` module into 
+current [project's CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/0f3658f2a413f580499adc8a205ebc2765b89e2b/test/CMakeLists.txt#L22-L26) as follows:
 
 ```cmake
 # CMakeLists.txt
@@ -38,10 +38,10 @@ Then, you can use the built-in **bazel abstracts** to compile your code and run 
 
 ## Compile Your Code
 
-To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/c%2B%2B/hello.cc), you can invoke `cc_library` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/0cd58ddaf4e004f4008363a1c4dfefac457bc279/c%2B%2B/CMakeLists.txt#L4).
+To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/test/c%2B%2B/hello.cc), you can invoke `cc_testing` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/master/test/c%2B%2B/CMakeLists.txt#L4).
 
 ```c++
-// hello.cc
+// bazel.cmake/test/c++/hello.cc
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
@@ -51,11 +51,15 @@ int main(int argc, char *argv[]) {
 ```
 
 ```cmake
-# CMakeLists.txt
-cc_binary(hello SRCS hello.cc)
+# bazel.cmake/test/c++/CMakeLists.txt
+cc_testing(hello SRCS hello.cc)
+
+# If gtest is being used in your code, please explicitly specify gtest in
+# cc_testing(xxx SRCS xxx.cc DEPS gtest) so that all dependent libraries
+# (libgtest.a and libgtest_main.a) could be linked.
 ```
 
-Then, issue the below commands to build an executable for **Mac OS or Linux**.
+Then, issue the below commands to build an executable for **Mac OS X or Linux**.
 
 ```bash
 project_dir$ mkdir build && cd build
@@ -65,14 +69,29 @@ project_dir$ make hello
 
 ```bash
 # Build Output
-/build> make hello
+project_dir/build$ make hello
 Scanning dependencies of target hello
 [ 50%] Building CXX object c++/CMakeFiles/hello.dir/hello.cc.o
 [100%] Linking CXX executable hello
 [100%] Built target hello
 ```
 
-You can verify all test cases in your project by `env GTEST_COLOR=1 ctest -j4` or `make tests` if exists.
+You can verify all test cases in your project by `env GTEST_COLOR=1 ctest -j4` or `make tests`.
+
+```bash
+project_dir/build$ env GTEST_COLOR=1 ctest
+Test project github/bazel.cmake/test/build
+    Start 1: cpu_id_test
+1/4 Test #1: cpu_id_test ......................   Passed    0.00 sec
+    Start 2: hello
+2/4 Test #2: hello ............................   Passed    0.00 sec
+    Start 3: vector_add_test
+3/4 Test #3: vector_add_test ..................   Passed    0.51 sec
+    Start 4: test_add_person
+4/4 Test #4: test_add_person ..................   Passed    0.26 sec
+
+100% tests passed, 0 tests failed out of 4
+```
 
 ## Advanced Options
 
@@ -82,8 +101,11 @@ Your host machine must be Windows!
 
 ```bash
 mkdir build && cd build
-cmake .. -G "Visual Studio 14 2015" -DCMAKE_GENERATOR_PLATFORM=x64 -Wno-dev
-msbuild testcase.sln /p:BuildInParallel=true /m:4
+cmake .. -G "Visual Studio 14 2015" -A x64 -DCMAKE_GENERATOR_PLATFORM=x64 -Wno-dev
+# Build code
+cmake --build .  -- -maxcpucount
+# Run test
+cmake -E env CTEST_OUTPUT_ON_FAILURE=1 cmake --build . --target RUN_TESTS
 ```
 
 ### Build on Android
@@ -96,11 +118,14 @@ android-ndk-r17/build/tools/make-standalone-toolchain.sh --force --arch=arm --pl
 
 # Create the build directory for CMake.
 mkdir build && cd build
-PROJECT_DIR=...
+PROJECT_DIR=......
 cmake -DCMAKE_TOOLCHAIN_FILE=$PROJECT_DIR/bazel.cmake/third-party/android-cmake/android.toolchain.cmake \
       -DANDROID_STANDALONE_TOOLCHAIN=$ANDROID_STANDALONE_TOOLCHAIN \
       -DANDROID_ABI="armeabi-v7a with NEON FP16" \
       -DANDROID_NATIVE_API_LEVEL=21 \
+      -DWITH_PYTHON=OFF \
+      -DHOST_CXX_COMPILER=/usr/bin/c++ \
+      -DHOST_C_COMPILER=/usr/bin/cc \
       ..
 make -j4
 ```
@@ -109,12 +134,14 @@ make -j4
 
 ```bash
 mkdir build && cd build
-PROJECT_DIR=...
+PROJECT_DIR=......
 cmake -DCMAKE_TOOLCHAIN_FILE=$PROJECT_DIR/bazel.cmake/third-party/ios-cmake/toolchain/iOS.cmake \
       -DIOS_PLATFORM=OS \
       -DWITH_PYTHON=OFF \
+      -DHOST_CXX_COMPILER=/usr/bin/c++ \
+      -DHOST_C_COMPILER=/usr/bin/cc \
       ..
-make "-j$(sysctl -n hw.ncpu)" VERBOSE=1
+make "-j$(sysctl -n hw.ncpu)"
 ```
 
 ## Cheat Sheet
@@ -184,11 +211,11 @@ Note: [DEPS lib1...] is optional syntax rules.
 #
     cc_testing(example_test SRCS example_test.cc DEPS example glog gflags)
 #
+# To generate protobuf cpp code using protoc and build a protobuf library.
+# It will also generate protobuf python code.
+    proto_library(example SRCS example.proto DEPS dependent1)
+#
 ```
-
-## TODO
-
-- [ ] Add proto_library
 
 ## License
 
