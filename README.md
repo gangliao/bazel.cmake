@@ -143,6 +143,8 @@ make "-j$(sysctl -n hw.ncpu)"
 
 ## Cheat Sheet
 
+`make helps` can dump the manuals on the screen! 
+
 ```bash
 | APIs                                                | Linux | Windows | Android | Mac OS X | Apple IOS |
 |-----------------------------------------------------|-------|---------|---------|----------|-----------|
