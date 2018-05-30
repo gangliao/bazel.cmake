@@ -4,6 +4,8 @@
 
 -----------------
 
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgangliao%2Fbazel.cmake.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgangliao%2Fbazel.cmake?ref=badge_shield)
+
 <center>
 
 | **`Linux CPU+GPU`** | **`Mac OS CPU+GPU`** | **`Windows CPU`** | **`Android`** | **`Apple IOS`** |
@@ -224,3 +226,6 @@ Note: [DEPS lib1...] is optional syntax rules.
 ## License
 
 [Apache License 2.0](LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgangliao%2Fbazel.cmake.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgangliao%2Fbazel.cmake?ref=badge_large)
