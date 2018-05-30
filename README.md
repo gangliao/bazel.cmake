@@ -63,13 +63,10 @@ Then, issue the below commands to build an executable for **Mac OS X or Linux**.
 
 ```bash
 project_dir$ mkdir build && cd build
-project_dir$ cmake ..
-project_dir$ make hello
-```
-
-```bash
-# Build Output
+project_dir/build$ cmake ..
 project_dir/build$ make hello
+
+# Build Output
 Scanning dependencies of target hello
 [ 50%] Building CXX object c++/CMakeFiles/hello.dir/hello.cc.o
 [100%] Linking CXX executable hello
