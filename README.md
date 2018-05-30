@@ -10,8 +10,7 @@
 
 | **`Linux CPU+GPU`** | **`Mac OS CPU+GPU`** | **`Windows CPU`** | **`Android`** | **`Apple IOS`** |
 |:-------------------:|:-------------------:|:-----------------:|:-------------:|:---------------:|
-| [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake) 
-           |  [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/bazel-cmake)       |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)          |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)   |
+| [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)            |  [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)                   |   [![Build status](https://ci.appveyor.com/api/projects/status/2leddlgpdfsmqmca?svg=true)](https://ci.appveyor.com/project/gangliao/bazel-cmake)       |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)          |     [![Build Status](https://travis-ci.com/gangliao/bazel.cmake.svg?branch=master)](https://travis-ci.com/gangliao/bazel.cmake)   |
 
 </center>
 
