@@ -143,6 +143,8 @@ make "-j$(sysctl -n hw.ncpu)"
 
 ## Cheat Sheet
 
+`make helps` can dump the manuals on the screen! 
+
 ```bash
 | APIs                                                | Linux | Windows | Android | Mac OS X | Apple IOS |
 |-----------------------------------------------------|-------|---------|---------|----------|-----------|
@@ -214,8 +216,7 @@ Note: [DEPS lib1...] is optional syntax rules.
 # It will also generate protobuf python code.
     proto_library(example SRCS example.proto DEPS dependent1)
 #
-# To generate protobuf cpp code using protoc and build a protobuf library.
-# It will also generate protobuf python code.
+# To run a unit test using [env var=value python example.py args1 args2] after dependent1 completed.
     py_testing(example_test ENVS var=value SRCS example.py ARGS args1 args2 DEPS dependent1)
 #
 ```

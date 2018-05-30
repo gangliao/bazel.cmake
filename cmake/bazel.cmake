@@ -31,8 +31,8 @@ option(WITH_TESTING "Compile Source Code with Unit Testing"   ON)
 option(WITH_PYTHON  "Compile Source Code with Python"         ON)  
 option(WITH_MSVC_MT "Compile Source Code with MSVC /MT"       OFF)
 
-get_filename_component(BAZEL_THIRD_PARTY_DIR ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
-set(BAZEL_THIRD_PARTY_DIR ${BAZEL_THIRD_PARTY_DIR}/third-party)
+get_filename_component(BAZEL_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
+set(BAZEL_THIRD_PARTY_DIR ${BAZEL_SOURCE_DIR}/third-party)
 
 include(color)
 if(CMAKE_CROSSCOMPILING)
@@ -47,6 +47,8 @@ include(external/gtest)
 include(external/python)
 include(external/zlib)
 include(external/protobuf)
+
+add_custom_target(helps COMMAND ./make_help WORKING_DIRECTORY ${BAZEL_SOURCE_DIR}/cmake)
 
 macro(_build_target func_tag)
   set(_sources ${ARGN})
