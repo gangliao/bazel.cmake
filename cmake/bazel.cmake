@@ -121,7 +121,7 @@ function(nv_binary)
   endif(WITH_GPU)
 endfunction(nv_binary)
 
-function(nv_testing)
+function(nv_test)
   if (WITH_GPU)
     set(_args ${ARGV})
     list(FILTER _args INCLUDE REGEX "gtest+")
@@ -131,7 +131,7 @@ function(nv_testing)
     cmake_library(${ARGV} TAG nv_bin ${test_main})
     add_test(${ARGV0} ${ARGV0})
   endif(WITH_GPU)
-endfunction(nv_testing)
+endfunction(nv_test)
 
 function(proto_library)
   set(options STATIC SHARED)
@@ -156,15 +156,15 @@ function(proto_library)
   endwhile()
 endfunction(proto_library)
 
-function(py_testing)
+function(py_test)
   if (WITH_PYTHON)
     set(options "")
     set(oneValueArgs "")
     set(multiValueArgs SRCS DEPS ARGS ENVS)
-    cmake_parse_arguments(py_testing "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    cmake_parse_arguments(py_test "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     add_test(NAME ${ARGV0}
-      COMMAND env PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR} ${py_testing_ENVS}
-      ${PYTHON_EXECUTABLE} ${py_testing_SRCS} ${py_testing_ARGS}
+      COMMAND env PYTHONPATH=${CMAKE_CURRENT_BINARY_DIR} ${py_test_ENVS}
+      ${PYTHON_EXECUTABLE} ${py_test_SRCS} ${py_test_ARGS}
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
   endif(WITH_PYTHON)
 endfunction()

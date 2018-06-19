@@ -15,7 +15,7 @@
 
 **bazel.cmake** is a seamless submodule which aims to mimic the behavior of bazel to simplify the usability of CMake for **any mainstream operating systems** (Linux, Mac OS, Windows, Android, IOS). 
 
-When launching a large open source project, We found that not everyone can adapt to the tremendous higher-level mechanisms CMake offered. We borrow the abstracts from [Bazel](https://bazel.build/) to make it easy for us to do so! Back to 2017, Bazel has not yet matured to support manycore accelerators and even the most popular operating system - Windows. Maybe it's better now, but CMake is still the most powerful building tool for C++.  Last but not least, developers can leverage the elegant abstracts from this module to reach the fine-grained compilation and testing. So we will continue to support this project.
+When launching a large open source project, We found that not everyone can adapt to the tremendous higher-level mechanisms CMake offered. We borrow the abstracts from [Bazel](https://bazel.build/) to make it easy for us to do so! Back to 2017, Bazel has not yet matured to support manycore accelerators and even the most popular operating system - Windows. Maybe it's better now, but CMake is still the most powerful building tool for C++.  Last but not least, developers can leverage the elegant abstracts from this module to reach the fine-grained compilation and test. So we will continue to support this project.
 
 ## Preparation
 
@@ -151,13 +151,13 @@ make "-j$(sysctl -n hw.ncpu)"
 |-----------------------------------------------------|-------|---------|---------|----------|-----------|
 | cc_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_library(lib_name DEPS lib1...)                   |  yes  |   TBD   |   yes   |    yes   |    yes    |
-| cc_test(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
+| cc_test(bin_name SRCS src1.cc... [DEPS lib1...])    |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   |   yes   |    yes   |    yes    |
 | nv_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   no    |    yes   |    no     |
-| nv_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   no    |    yes   |    no     |
+| nv_test(bin_name SRCS src1.cc... [DEPS lib1...])    |  yes  |   yes   |   no    |    yes   |    no     |
 | nv_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   |   no    |    yes   |    no     |
 | proto_library(lib_name SRCS src.proto [DEPS lib1])  |  yes  |   yes   |   yes   |    yes   |    yes    |
-| py_testing(name SRCS src.py ARGS arg1 [DEPS lib1])  |  yes  |   yes   |   no    |    yes   |    no     |
+| py_test(name SRCS src.py ARGS arg1 [DEPS lib1])     |  yes  |   yes   |   no    |    yes   |    no     |
 
 Note: [DEPS lib1...] is optional syntax rules.
 
@@ -205,7 +205,7 @@ Note: [DEPS lib1...] is optional syntax rules.
 #
 # To build a unit test binary using NVCC, use the nv_ prefixed version:
 #
-    nv_testing(example_test SRCS example_test.cu DEPS example)
+    nv_test(example_test SRCS example_test.cu DEPS example)
 #
 # It is pretty often that executable and test binaries depend on
 # pre-defined external libaries like glog and gflags defined in
@@ -218,7 +218,7 @@ Note: [DEPS lib1...] is optional syntax rules.
     proto_library(example SRCS example.proto DEPS dependent1)
 #
 # To run a unit test using [env var=value python example.py args1 args2] after dependent1 completed.
-    py_testing(example_test ENVS var=value SRCS example.py ARGS args1 args2 DEPS dependent1)
+    py_test(example_test ENVS var=value SRCS example.py ARGS args1 args2 DEPS dependent1)
 #
 ```
 
