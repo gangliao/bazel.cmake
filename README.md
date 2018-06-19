@@ -39,7 +39,7 @@ Then, you can use the built-in **bazel abstracts** to compile your code and run 
 
 ## Compile Your Code
 
-To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/test/c++/hello.cc), you can invoke `cc_testing` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/master/test/c++/CMakeLists.txt#L4).
+To compile the [following code](https://github.com/gangliao/bazel.cmake/blob/master/test/c++/hello.cc), you can invoke `cc_test` in [CMakeLists.txt](https://github.com/gangliao/bazel.cmake/blob/master/test/c++/CMakeLists.txt#L4).
 
 ```c++
 // bazel.cmake/test/c++/hello.cc
@@ -53,10 +53,10 @@ int main(int argc, char *argv[]) {
 
 ```cmake
 # bazel.cmake/test/c++/CMakeLists.txt
-cc_testing(hello SRCS hello.cc)
+cc_test(hello SRCS hello.cc)
 
 # If gtest is being used in your code, please explicitly specify gtest in
-# cc_testing(xxx SRCS xxx.cc DEPS gtest) so that all dependent libraries
+# cc_test(xxx SRCS xxx.cc DEPS gtest) so that all dependent libraries
 # (libgtest.a and libgtest_main.a) could be linked.
 ```
 
@@ -151,7 +151,7 @@ make "-j$(sysctl -n hw.ncpu)"
 |-----------------------------------------------------|-------|---------|---------|----------|-----------|
 | cc_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_library(lib_name DEPS lib1...)                   |  yes  |   TBD   |   yes   |    yes   |    yes    |
-| cc_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
+| cc_test(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   yes   |    yes   |    yes    |
 | cc_binary(bin_name SRCS src1.cc... [DEPS lib1...])  |  yes  |   yes   |   yes   |    yes   |    yes    |
 | nv_library(lib_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   no    |    yes   |    no     |
 | nv_testing(bin_name SRCS src1.cc... [DEPS lib1...]) |  yes  |   yes   |   no    |    yes   |    no     |
@@ -201,7 +201,7 @@ Note: [DEPS lib1...] is optional syntax rules.
 # To build a unit test binary, which is an executable binary with
 # GoogleTest linked:
 #
-    cc_testing(example_test SRCS example_test.cc DEPS example)
+    cc_test(example_test SRCS example_test.cc DEPS example)
 #
 # To build a unit test binary using NVCC, use the nv_ prefixed version:
 #
@@ -211,7 +211,7 @@ Note: [DEPS lib1...] is optional syntax rules.
 # pre-defined external libaries like glog and gflags defined in
 # /cmake/external/*.cmake:
 #
-    cc_testing(example_test SRCS example_test.cc DEPS example glog gflags)
+    cc_test(example_test SRCS example_test.cc DEPS example glog gflags)
 #
 # To generate protobuf cpp code using protoc and build a protobuf library.
 # It will also generate protobuf python code.
