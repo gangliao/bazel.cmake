@@ -22,14 +22,24 @@
 #
 ########################################################################
 
-if(NOT CMAKE_CROSSCOMPILING)
-    find_package(CUDA QUIET)
-endif(NOT CMAKE_CROSSCOMPILING)
-
-option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     ${CUDA_FOUND})
+option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     OFF)
 option(WITH_TESTING "Compile Source Code with Unit Testing"   ON)
 option(WITH_PYTHON  "Compile Source Code with Python"         ON)  
 option(WITH_MSVC_MT "Compile Source Code with MSVC /MT"       OFF)
+
+if(NOT CMAKE_CROSSCOMPILING)
+    find_package(CUDA REQUIRED)
+endif(NOT CMAKE_CROSSCOMPILING)
+
+if(CUDA_FOUND)
+  set(WITH_GPU ON)
+endif(CUDA_FOUND)
+
+message(STATUS "CUDA_FOUND=" ${CUDA_FOUND})
+message(STATUS "WITH_GPU=" ${WITH_GPU})
+message(STATUS "WITH_TESTING=" ${WITH_TESTING})
+message(STATUS "WITH_PYTHON=" ${WITH_PYTHON})
+message(STATUS "WITH_MSVC_MT=" ${WITH_MSVC_MT})
 
 get_filename_component(BAZEL_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 set(BAZEL_THIRD_PARTY_DIR ${BAZEL_SOURCE_DIR}/third-party)
