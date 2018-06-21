@@ -1,2 +1,2 @@
 nv_library(vector_add SRCS vector_add.cu)
-nv_test(vector_add_test SRCS vector_add_test.cu DEPS vector_add gtest)
+nv_test(vector_add_test SRCS vector_add_test.cu DEPS vector_add)

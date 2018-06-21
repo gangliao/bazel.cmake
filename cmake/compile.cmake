@@ -138,8 +138,10 @@ function(detect_installed_gpus out_variable)
     endif()
 endfunction()
 
-detect_installed_gpus(CUDA_NVCC_ARCH_FLAGS)
-list(APPEND CUDA_NVCC_FLAGS ${CUDA_NVCC_ARCH_FLAGS} -Wno-deprecated-gpu-targets)
+if(WITH_GPU)
+    detect_installed_gpus(CUDA_NVCC_ARCH_FLAGS)
+    list(APPEND CUDA_NVCC_FLAGS ${CUDA_NVCC_ARCH_FLAGS} -Wno-deprecated-gpu-targets)
+endif(WITH_GPU)
 
 # external dependencies log output
 SET(EXTERNAL_PROJECT_LOG_ARGS

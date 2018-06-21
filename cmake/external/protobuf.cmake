@@ -108,7 +108,6 @@ function(_protobuf_generate_python SRCS)
                 DEPENDS ${ABS_FIL} ${Protobuf_PROTOC_EXECUTABLE}
                 COMMENT "Running Python protocol buffer compiler on ${FIL}"
                 VERBATIM )
-        message("#### HAHAHH")
     endforeach()
 
     set(${SRCS} ${${SRCS}} PARENT_SCOPE)
