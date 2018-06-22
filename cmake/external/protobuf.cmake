@@ -21,6 +21,12 @@ macro(UNSET_VAR VAR_NAME)
     UNSET(${VAR_NAME} CACHE)
     UNSET(${VAR_NAME})
 endmacro()
+
+# bazel.cmake provides function proto_library to build a .proto file into a static library.
+# This function relies on protobuf as a CMake target, so that the built library could rely on
+# it. This implies that we'd have to download the source code of protobuf and build it using
+# CMake function ExternalProject_Add. In order to trigger the downloading and building,
+# we'd unset CMake variables that were probably set by find_package(Protobuf QUIET).
 UNSET_VAR(PROTOBUF_INCLUDE_DIR)
 UNSET_VAR(PROTOBUF_FOUND)
 UNSET_VAR(PROTOBUF_PROTOC_EXECUTABLE)
