@@ -52,7 +52,7 @@ add_custom_target(helps COMMAND ./make_help WORKING_DIRECTORY ${BAZEL_SOURCE_DIR
 
 macro(_build_target func_tag)
   set(_sources ${ARGN})
-  list(FILTER _sources EXCLUDE REGEX ".proto$")
+  list(FILTER _sources EXCLUDE REGEX "\\.proto$")
   if (${func_tag} STREQUAL "cc_lib")
     add_library(${_sources})
   elseif(${func_tag} STREQUAL "cc_bin")
