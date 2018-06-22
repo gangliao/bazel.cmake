@@ -22,18 +22,18 @@
 #
 ########################################################################
 
-option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     OFF)
+set(TEND_TO_USE_GPU OFF)
+if(NOT CMAKE_CROSSCOMPILING)
+    find_package(CUDA QUIET)
+    if(CUDA_FOUND)
+        set(TEND_TO_USE_GPU ON)
+    endif(CUDA_FOUND)
+endif(NOT CMAKE_CROSSCOMPILING)
+
+option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     ${TEND_TO_USE_GPU)
 option(WITH_TESTING "Compile Source Code with Unit Testing"   ON)
 option(WITH_PYTHON  "Compile Source Code with Python"         ON)  
 option(WITH_MSVC_MT "Compile Source Code with MSVC /MT"       OFF)
-
-if(NOT CMAKE_CROSSCOMPILING)
-    find_package(CUDA REQUIRED)
-endif(NOT CMAKE_CROSSCOMPILING)
-
-if(CUDA_FOUND)
-  set(WITH_GPU ON)
-endif(CUDA_FOUND)
 
 message(STATUS "CUDA_FOUND=" ${CUDA_FOUND})
 message(STATUS "WITH_GPU=" ${WITH_GPU})
