@@ -30,7 +30,7 @@ if(NOT CMAKE_CROSSCOMPILING)
     endif(CUDA_FOUND)
 endif(NOT CMAKE_CROSSCOMPILING)
 
-option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     ${TEND_TO_USE_GPU)
+option(WITH_GPU     "Compile Source Code with NVIDIA GPU"     ${TEND_TO_USE_GPU})
 option(WITH_TESTING "Compile Source Code with Unit Testing"   ON)
 option(WITH_PYTHON  "Compile Source Code with Python"         ON)  
 option(WITH_MSVC_MT "Compile Source Code with MSVC /MT"       OFF)
