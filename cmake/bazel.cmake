@@ -62,7 +62,21 @@ add_custom_target(helps COMMAND ./make_help WORKING_DIRECTORY ${BAZEL_SOURCE_DIR
 
 macro(_build_target func_tag)
   set(_sources ${ARGN})
-  list(FILTER _sources EXCLUDE REGEX "\\.proto$")
+
+  # Given a variable containing a file list,
+  # it will remove all the files wich basename
+  # does not match the specified pattern.
+  if(${CMAKE_VERSION} VERSION_LESS 3.6)
+    foreach(src_file ${_sources})
+      get_filename_component(base_name ${src_file} NAME)
+      if(${base_name} MATCHES "\\.proto$")
+        list(REMOVE_ITEM _sources "${src_file}")
+      endif()
+    endforeach()
+  else(${CMAKE_VERSION} VERSION_LESS 3.6)
+    list(FILTER _sources EXCLUDE REGEX "\\.proto$")
+  endif(${CMAKE_VERSION} VERSION_LESS 3.6)
+
   if (${func_tag} STREQUAL "cc_lib")
     add_library(${_sources})
   elseif(${func_tag} STREQUAL "cc_bin")
