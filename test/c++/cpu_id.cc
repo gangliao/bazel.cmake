@@ -28,13 +28,14 @@ limitations under the License. */
 
 #endif
 
-SIMDFlags::SIMDFlags() {
+SIMDFlags::SIMDFlags()
+{
 #if defined(__arm__) || defined(__aarch64__)
-  simd_flags_ = SIMD_NEON;
+    simd_flags_ = SIMD_NEON;
 #else
-  int cpuInfo[4];
-  // CPUID: https://en.wikipedia.org/wiki/CPUID
-  // clang-format off
+    int cpuInfo[4];
+    // CPUID: https://en.wikipedia.org/wiki/CPUID
+    // clang-format off
   CPUID(cpuInfo, 0x00000001);
   simd_flags_ |= cpuInfo[3] & (1 << 25) ? SIMD_SSE   : SIMD_NONE;
   simd_flags_ |= cpuInfo[3] & (1 << 26) ? SIMD_SSE2  : SIMD_NONE;

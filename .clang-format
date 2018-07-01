@@ -2,4 +2,13 @@
 Language:        Cpp
 BasedOnStyle:  Google
 Standard:  Cpp11 
+UseTab: Never
+BreakBeforeBraces: Allman
+AlignConsecutiveAssignments: true
+AlignOperands: true
+AlignTrailingComments: true
+FixNamespaceComments: true
+AlignEscapedNewlines: true
+AlignAfterOpenBracket: true
+IndentWidth: 4
 ...
